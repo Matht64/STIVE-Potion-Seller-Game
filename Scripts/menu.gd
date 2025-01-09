@@ -13,7 +13,7 @@ const MAIN = preload("res://main.tscn")
 			#print(local_game_data, "\nou\n", distant_game_data)
 	
 func _on_button_pressed() -> void:
-	Api.request_get("User")
+	#Api.request_get("User")
 	get_tree().change_scene_to_packed(MAIN)
 
 func get_distant_game_data(data) -> JSON:

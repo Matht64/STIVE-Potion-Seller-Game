@@ -16,6 +16,7 @@ theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+clip_contents = true
 layout_mode = 2
 texture = ExtResource("1_jlxm8")
 region_rect = Rect2(0, 0, 2573.53, 1440)
@@ -26,15 +27,12 @@ patch_margin_bottom = 6
 
 [node name="ItemGrid" type="GridContainer" parent="MarginContainer/NinePatchRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -139.0
-offset_top = -139.0
-offset_right = 139.0
-offset_bottom = 139.0
+anchors_preset = -1
+anchor_left = 0.0173611
+anchor_top = 0.0173611
+anchor_right = 0.982639
+anchor_bottom = 0.982639
 grow_horizontal = 2
 grow_vertical = 2
 columns = 3
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StockData" load_steps=4 format=3 uid="uid://jrpfrf22664v"]
+
+[ext_resource type="Script" path="res://Suppliers/stock_data.gd" id="1_4fkla"]
+[ext_resource type="Script" path="res://Suppliers/supplier_data.gd" id="2_r8c16"]
+[ext_resource type="Resource" uid="uid://cvccshgaqpsbc" path="res://Suppliers/suppliers_resources/supplier_1.tres" id="3_vx2hf"]
+
+[resource]
+script = ExtResource("1_4fkla")
+supplier_datas = Array[ExtResource("2_r8c16")]([ExtResource("3_vx2hf"), ExtResource("3_vx2hf"), null, null, null])
