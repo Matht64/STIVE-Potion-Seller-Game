@@ -3,15 +3,18 @@ extends Node
 @onready var inventory_interface: Control = %InventoryInterface
 @onready var external_inventory: PanelContainer = $UI/ScreenHbox/RightScreen/InventoryInterface/ExternalInventory
 @onready var stock_interface: Control = $UI/ScreenHbox/LeftScreen/StockInterface
+@onready var player_stock: Control = $UI/ScreenHbox/LeftScreen/StockInterface/PlayerStock
 
 
 const MAIN = preload("res://main.tscn")
 
 var inv_data = preload("res://test_inv.tres")
 var stock_data = preload("res://test_stock.tres")
+var golds = 100
 
 func _ready() -> void:
 	inventory_interface.set_player_inventory_data(inv_data)
+	player_data.set_player_data(inv_data, golds)
 	stock_interface.set_player_stock_data(stock_data)
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)
@@ -26,7 +29,7 @@ func toggle_inventory_interface(external_inventory_owner = null) -> void:
 
 
 func _on_suppliers_pressed() -> void:
-	stock_interface.change_visibility()
+	player_stock.visible = not player_stock.visible
 
 
 

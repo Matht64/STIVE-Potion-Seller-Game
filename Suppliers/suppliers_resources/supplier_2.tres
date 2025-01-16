@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SupplierData" load_steps=3 format=3 uid="uid://bn8ha2we6xfwg"]
+
+[ext_resource type="Script" path="res://Suppliers/supplier_data.gd" id="1_c3heh"]
+[ext_resource type="Resource" uid="uid://48eoweciodyd" path="res://Inventory/Items/blue_potion.tres" id="1_kthne"]
+
+[resource]
+script = ExtResource("1_c3heh")
+item_data = ExtResource("1_kthne")
+price = 5
+unlocked = false

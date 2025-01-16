@@ -19,10 +19,15 @@ config/icon="res://icon.svg"
 
 Global="*res://Scripts/global.gd"
 Api="*res://Scripts/api.gd"
+player_data="*res://Scripts/player_data.gd"
 
 [dotnet]
 
 project/assembly_name="TestJeuGodot"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg")
 
 [physics]
 

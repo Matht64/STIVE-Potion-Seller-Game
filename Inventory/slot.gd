@@ -19,7 +19,6 @@ func set_slot_data(slot_data: SlotData) -> void:
 		quantity_label.hide()
 		texture_rect.modulate = Color(1,1,1,0.5)
 		#item_data.is_grabbable = false
-	
 
 
 func _on_gui_input(event: InputEvent) -> void:

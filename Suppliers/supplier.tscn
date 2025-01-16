@@ -79,3 +79,5 @@ text = "
 
 test"
 fit_content = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

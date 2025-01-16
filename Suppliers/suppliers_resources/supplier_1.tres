@@ -1,19 +1,10 @@
-[gd_resource type="Resource" script_class="SupplierData" load_steps=6 format=3 uid="uid://cvccshgaqpsbc"]
+[gd_resource type="Resource" script_class="SupplierData" load_steps=3 format=3 uid="uid://cvccshgaqpsbc"]
 
-[ext_resource type="Script" path="res://Inventory/item_data.gd" id="1_574df"]
 [ext_resource type="Script" path="res://Suppliers/supplier_data.gd" id="1_fyc73"]
-[ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Ressources/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="2_5jp2x"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q7gd0"]
-atlas = ExtResource("2_5jp2x")
-region = Rect2(32, 224, 32, 32)
-
-[sub_resource type="Resource" id="Resource_cf2am"]
-script = ExtResource("1_574df")
-name = "supplier1"
-texture = SubResource("AtlasTexture_q7gd0")
+[ext_resource type="Resource" uid="uid://c788iwls7alq4" path="res://Inventory/Items/red_potion.tres" id="1_tkijy"]
 
 [resource]
 script = ExtResource("1_fyc73")
-item_data = SubResource("Resource_cf2am")
-price = 0
+item_data = ExtResource("1_tkijy")
+price = 8
+unlocked = false

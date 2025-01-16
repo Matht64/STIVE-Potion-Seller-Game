@@ -7,6 +7,7 @@ signal inventory_interact(inventory_data: InventoryData, index: int, button: int
 
 @export var slot_datas: Array[SlotData]
 
+
 func grab_slot_data(index: int) -> SlotData:
 	var slot_data = slot_datas[index]
 	if slot_data:
@@ -15,6 +16,7 @@ func grab_slot_data(index: int) -> SlotData:
 		return slot_data
 	else:
 		return null
+
 
 func drop_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 	var slot_data = slot_datas[index]
@@ -28,8 +30,8 @@ func drop_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 		
 	inventory_updated.emit(self)
 	return returned_slot_data
-	
-	
+
+
 func drop_single_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 	var slot_data = slot_datas[index]
 	
@@ -44,6 +46,19 @@ func drop_single_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 		return grabbed_slot_data
 	else:
 		return null
+
+
+func increment_slot_data(item_data: ItemData, quantity, price) -> void:
+	#check if slot data exist and if multiple of same item_data add 1 or 10 to only one slot data
+	for slot_data in slot_datas:
+		if slot_data: 
+			if slot_data.item_data == item_data:
+				slot_data.increment_item_data(quantity)
+				player_data.golds -= price
+				print(player_data.golds)
+				inventory_updated.emit(self)
+				return
+	print("no item corresponding")
 
 
 func on_slot_clicked(index: int, button: int) -> void :

@@ -18,3 +18,6 @@ func create_single_slot_data() -> SlotData:
 	new_slot_data.quantity = 1
 	quantity -= 1
 	return new_slot_data
+
+func increment_item_data(quantity_to_add) -> void :
+	quantity += quantity_to_add
