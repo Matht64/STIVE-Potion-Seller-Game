@@ -4,6 +4,7 @@ extends Node
 @onready var external_inventory: PanelContainer = $UI/ScreenHbox/RightScreen/InventoryInterface/ExternalInventory
 @onready var stock_interface: Control = $UI/ScreenHbox/LeftScreen/StockInterface
 @onready var player_stock: Control = $UI/ScreenHbox/LeftScreen/StockInterface/PlayerStock
+@onready var golds_label: Label = $UI/ScreenHbox/RightScreen/Golds
 
 
 const MAIN = preload("res://main.tscn")
@@ -19,6 +20,8 @@ func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)
 
+func _process(delta: float) -> void:
+	golds_label.text ="%s gold(s)" % player_data.golds
 
 func toggle_inventory_interface(external_inventory_owner = null) -> void:
 	if external_inventory_owner:
