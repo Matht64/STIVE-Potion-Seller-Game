@@ -1,15 +1,19 @@
 extends PanelContainer
 
-@onready var texture_rect: TextureRect = $MarginContainer/VBoxContainer/SuppHBoxContainer/MarginContainer/SupplierImage
+@onready var supplier_image: TextureRect = $MarginContainer/VBoxContainer/SuppHBoxContainer/MarginContainer/SupplierImage
+@onready var potion_image: TextureRect = $MarginContainer/VBoxContainer/PotHBoxContainer2/MarginContainer/PotionImage
+@onready var supplier_info: RichTextLabel = $MarginContainer/VBoxContainer/SuppHBoxContainer/MarginContainer2/SupplierInfo
+@onready var potion_info: RichTextLabel = $MarginContainer/VBoxContainer/PotHBoxContainer2/MarginContainer2/PotionInfo
 
 signal supplier_clicked(index: int, button: int)
 
 
 func set_supplier_data(supplier_data: SupplierData) -> void:
-	print("supplier data is set %s" % supplier_data)
 	var item_data = supplier_data.item_data
-	texture_rect.texture = item_data.texture
-	#tooltip_text = "%s\n%s" % [item_data.name]
+	supplier_image.texture = supplier_data.texture
+	potion_image.texture = item_data.texture
+	supplier_info.text = ("\n\n%s" % supplier_data.name)
+	potion_info.text = ("\n\n%s" % item_data.name)
 	supplier_data.unlocked = true
 	
 

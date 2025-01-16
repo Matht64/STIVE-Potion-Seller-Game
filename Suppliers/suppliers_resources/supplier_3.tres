@@ -1,10 +1,17 @@
-[gd_resource type="Resource" script_class="SupplierData" load_steps=3 format=3 uid="uid://dtlvmy3jecomc"]
+[gd_resource type="Resource" script_class="SupplierData" load_steps=5 format=3 uid="uid://dtlvmy3jecomc"]
 
 [ext_resource type="Resource" uid="uid://chsjedqpffm8o" path="res://Inventory/Items/yellow_potion.tres" id="1_b4jr4"]
 [ext_resource type="Script" path="res://Suppliers/supplier_data.gd" id="2_0arqg"]
+[ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Ressources/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="3_cgx7b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2syv"]
+atlas = ExtResource("3_cgx7b")
+region = Rect2(256, 512, 32, 32)
 
 [resource]
 script = ExtResource("2_0arqg")
 item_data = ExtResource("1_b4jr4")
+texture = SubResource("AtlasTexture_l2syv")
+name = "Jean-Baptiste"
 price = 12
 unlocked = false

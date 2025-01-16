@@ -40,7 +40,7 @@ theme_override_constants/margin_top = 42
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 42
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/SuppHBoxContainer/MarginContainer2"]
+[node name="SupplierInfo" type="RichTextLabel" parent="MarginContainer/VBoxContainer/SuppHBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "
@@ -72,7 +72,7 @@ theme_override_constants/margin_top = 42
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 42
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PotHBoxContainer2/MarginContainer2"]
+[node name="PotionInfo" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PotHBoxContainer2/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "
