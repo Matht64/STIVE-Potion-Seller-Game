@@ -8,4 +8,4 @@
 
 [resource]
 script = ExtResource("1_4fkla")
-supplier_datas = Array[ExtResource("2_r8c16")]([ExtResource("3_vx2hf"), ExtResource("4_a7o6r"), ExtResource("5_gtxk5"), null, null, null])
+supplier_datas = Array[ExtResource("2_r8c16")]([ExtResource("3_vx2hf"), ExtResource("4_a7o6r"), ExtResource("5_gtxk5")])

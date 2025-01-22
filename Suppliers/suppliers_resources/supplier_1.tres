@@ -14,4 +14,4 @@ item_data = ExtResource("1_tkijy")
 texture = SubResource("AtlasTexture_wlmea")
 name = "Jean-Benjamin"
 price = 8
-unlocked = false
+unlocked = true

@@ -27,7 +27,7 @@ project/assembly_name="TestJeuGodot"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg")
+enabled=PackedStringArray()
 
 [physics]
 

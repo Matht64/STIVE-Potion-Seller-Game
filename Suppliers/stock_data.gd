@@ -9,6 +9,9 @@ signal supplier_interact(stock_data: StockData, quantity: int, price: int)
 func on_supplier_clicked(index: int, button: int) -> void :
 	var supplier_data = supplier_datas[index]
 	var quantity
+	if not supplier_data.unlocked:
+		print("you'll can unlock this supplier later")
+		return
 	if button == MOUSE_BUTTON_RIGHT:
 		quantity = 10
 	else:

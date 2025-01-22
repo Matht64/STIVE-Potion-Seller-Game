@@ -4,6 +4,7 @@ extends PanelContainer
 @onready var potion_image: TextureRect = $MarginContainer/VBoxContainer/PotHBoxContainer2/MarginContainer/PotionImage
 @onready var supplier_info: RichTextLabel = $MarginContainer/VBoxContainer/SuppHBoxContainer/MarginContainer2/SupplierInfo
 @onready var potion_info: RichTextLabel = $MarginContainer/VBoxContainer/PotHBoxContainer2/MarginContainer2/PotionInfo
+@onready var panel: PanelContainer = $"."
 
 signal supplier_clicked(index: int, button: int)
 
@@ -14,8 +15,8 @@ func set_supplier_data(supplier_data: SupplierData) -> void:
 	potion_image.texture = item_data.texture
 	supplier_info.text = ("\n\n%s" % supplier_data.name)
 	potion_info.text = ("\n\n%s" % item_data.name)
-	supplier_data.unlocked = true
-	
+	if not supplier_data.unlocked :
+		panel.modulate = Color(1,1,1,0.5)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
