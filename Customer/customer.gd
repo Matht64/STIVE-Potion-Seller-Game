@@ -7,6 +7,7 @@ signal toggle_inventory(external_inventory_owner)
 
 const CUSTOMER_1 = preload("res://Customer/customer_resources/customer_1.tres")
 
+
 func _ready() -> void:
 	var customer_data = generate_customer_data()
 	set_customer_data(customer_data)
@@ -14,6 +15,8 @@ func _ready() -> void:
 func set_customer_data(customer_data: CustomerData) -> void:
 	name_label.text = customer_data.name 
 	texture_rect.texture = customer_data.texture
+	var customer_inventory = customer_data.order
+
 
 func generate_customer_data() -> CustomerData:
 	return CUSTOMER_1

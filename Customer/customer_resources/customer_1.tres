@@ -1,26 +1,19 @@
-[gd_resource type="Resource" script_class="CustomerData" load_steps=11 format=3 uid="uid://cghpilsfh6e1n"]
+[gd_resource type="Resource" script_class="CustomerData" load_steps=9 format=3 uid="uid://cghpilsfh6e1n"]
 
-[ext_resource type="Script" path="res://Inventory/inventory_data.gd" id="1_cofiu"]
-[ext_resource type="Script" path="res://Inventory/slot_data.gd" id="2_dl3jv"]
 [ext_resource type="Resource" uid="uid://48eoweciodyd" path="res://Inventory/Items/blue_potion.tres" id="3_7eai0"]
 [ext_resource type="Resource" uid="uid://c788iwls7alq4" path="res://Inventory/Items/red_potion.tres" id="4_pip2j"]
 [ext_resource type="Script" path="res://Customer/customer_data.gd" id="5_iho55"]
+[ext_resource type="Script" path="res://Customer/order_data.gd" id="5_x0oen"]
 
-[sub_resource type="Resource" id="Resource_i7wqi"]
-script = ExtResource("2_dl3jv")
+[sub_resource type="Resource" id="Resource_5gtaa"]
+script = ExtResource("5_x0oen")
 item_data = ExtResource("3_7eai0")
-price = 0
-quantity = 0
+quantity_wanted = 4
 
-[sub_resource type="Resource" id="Resource_dg5sn"]
-script = ExtResource("2_dl3jv")
+[sub_resource type="Resource" id="Resource_qsjod"]
+script = ExtResource("5_x0oen")
 item_data = ExtResource("4_pip2j")
-price = 0
-quantity = 0
-
-[sub_resource type="Resource" id="Resource_8hg00"]
-script = ExtResource("1_cofiu")
-slot_datas = Array[ExtResource("2_dl3jv")]([SubResource("Resource_i7wqi"), SubResource("Resource_dg5sn")])
+quantity_wanted = 1
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jrumt"]
 load_path = "res://.godot/imported/#1 - Transparent Icons.png-2000a9804b0492b58bfab6995ec224c2.ctex"
@@ -31,6 +24,6 @@ region = Rect2(448, 96, 32, 32)
 
 [resource]
 script = ExtResource("5_iho55")
-inventory_data = SubResource("Resource_8hg00")
 texture = SubResource("AtlasTexture_0ert3")
 name = "Bernard"
+order = Array[ExtResource("5_x0oen")]([SubResource("Resource_5gtaa"), SubResource("Resource_qsjod")])

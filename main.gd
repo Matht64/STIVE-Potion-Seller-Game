@@ -14,6 +14,7 @@ var inv_data = preload("res://test_inv.tres")
 var stock_data = preload("res://test_stock.tres")
 var golds = 100
 
+
 func _ready() -> void:
 	inventory_interface.set_player_inventory_data(inv_data)
 	player_data.set_player_data(inv_data, golds)

@@ -8,6 +8,13 @@ signal inventory_interact(inventory_data: InventoryData, index: int, button: int
 @export var slot_datas: Array[SlotData]
 
 
+func create_slot_data(item_data : ItemData) -> SlotData:
+	var new_slot_data = SlotData.new()
+	new_slot_data.item_data = item_data
+	new_slot_data.quantity = 0
+	return new_slot_data
+
+
 func grab_slot_data(index: int) -> SlotData:
 	var slot_data = slot_datas[index]
 	if slot_data:
@@ -36,9 +43,9 @@ func drop_single_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 	var slot_data = slot_datas[index]
 	
 	if not slot_data:
-		slot_datas[index] = grabbed_slot_data.create_single_slot_data()
+		slot_datas[index] = grabbed_slot_data.duplicate_single_slot_data()
 	elif slot_data.can_fully_merge_with(grabbed_slot_data):
-		slot_data.fully_merge_with(grabbed_slot_data.create_single_slot_data())
+		slot_data.fully_merge_with(grabbed_slot_data.duplicate_single_slot_data())
 		
 	inventory_updated.emit(self)
 	

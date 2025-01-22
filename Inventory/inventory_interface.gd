@@ -65,3 +65,10 @@ func update_grabbed_slot() -> void:
 		grabbed_slot.set_slot_data(grabbed_slot_data)
 	else:
 		grabbed_slot.hide()
+
+
+func create_inventory_data(item_datas : Array[ItemData]) -> InventoryData :
+	var new_inventory_data = InventoryData.new()
+	for item in item_datas:
+		new_inventory_data.slot_datas.append(new_inventory_data.create_slot_data(item))
+	return new_inventory_data
