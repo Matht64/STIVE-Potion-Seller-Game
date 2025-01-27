@@ -8,4 +8,4 @@ class_name Customer
 
 
 func compareOrder(orderA : Order, orderB : Order) -> bool :
-	return false
+	return orderA == orderB
