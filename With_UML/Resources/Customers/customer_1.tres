@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=2 format=3 uid="uid://dmtonaiu3h326"]
+
+[ext_resource type="Script" path="res://Customer/customer.gd" id="1_3b1ow"]
+
+[resource]
+script = ExtResource("1_3b1ow")
+name = "Terry"

@@ -59,7 +59,7 @@ func on_inventory_interact(inventory_data: InventoryData, index: int, button: in
 
 
 func update_grabbed_slot() -> void:
-	#make the flying object once grabbed
+	#make the object flying once grabbed
 	if grabbed_slot_data:
 		grabbed_slot.show()
 		grabbed_slot.set_slot_data(grabbed_slot_data)

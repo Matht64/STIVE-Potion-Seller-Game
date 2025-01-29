@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Potion" load_steps=2 format=3 uid="uid://chsjedqpffm8o"]
+
+[ext_resource type="Script" path="res://Inventory/potion.gd" id="1_jv3st"]
+
+[resource]
+script = ExtResource("1_jv3st")
+id = 2
+name = "Yellow Potion"
+price = 10

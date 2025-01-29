@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Supplier" load_steps=5 format=3 uid="uid://dtlvmy3jecomc"]
+
+[ext_resource type="Script" path="res://Supplier/supplier.gd" id="1_fvlmr"]
+[ext_resource type="Resource" uid="uid://chsjedqpffm8o" path="res://Resources/Potions/yellow_potion.tres" id="1_mrjtk"]
+[ext_resource type="Script" path="res://Supplier/offer.gd" id="2_toqps"]
+
+[sub_resource type="Resource" id="Resource_b4f3s"]
+script = ExtResource("2_toqps")
+price = 100
+quantity = 20
+potion = ExtResource("1_mrjtk")
+
+[resource]
+script = ExtResource("1_fvlmr")
+id = 2
+name = "Jean-Benjamin"
+unlock_price = 500
+offer = SubResource("Resource_b4f3s")
