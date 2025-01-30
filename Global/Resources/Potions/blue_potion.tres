@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="Potion" load_steps=4 format=3 uid="uid://48eoweciodyd"]
 
-[ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Images/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="1_ceijd"]
+[ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Images/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="1_pe763"]
 [ext_resource type="Script" path="res://Inventory/potion.gd" id="2_pg3d8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2e1gx"]
-atlas = ExtResource("1_ceijd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvt11"]
+atlas = ExtResource("1_pe763")
 region = Rect2(32, 288, 32, 32)
 
 [resource]
 script = ExtResource("2_pg3d8")
 id = 0
 name = "Blue Potion"
-image = SubResource("AtlasTexture_2e1gx")
+image = SubResource("AtlasTexture_fvt11")
 price = 2

@@ -5,14 +5,13 @@ signal slot_clicked(index: int, button: int)
 @onready var texture_rect: TextureRect = $MarginContainer/TextureRect
 @onready var quantity_label: Label = $QuantityLabel
 
-func set_slot_data(slot: Slot) -> void:
-	if slot.potion:
-		var potion = slot.potion
-		texture_rect.texture = potion.image
-		tooltip_text = "%s\n%s" % [potion.name]
+func set_slot_view(slot: Slot) -> void:
+	var potion = slot.potion
+	texture_rect.texture = potion.image
+	tooltip_text = "\n%s" % potion.name
 
 	#show the quantity only if it's more than 1 else make it grey
-	if slot.potion and slot.quantity > 0:
+	if slot.quantity > 0:
 		quantity_label.text = "x%s" % slot.quantity
 		quantity_label.show()
 		#potion.is_grabbable = true

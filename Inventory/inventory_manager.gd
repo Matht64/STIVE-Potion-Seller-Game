@@ -2,9 +2,21 @@ extends Node
 
 class_name InventoryManager
 
+@export var seller_inventory : Inventory
+@export var external_inventory : Inventory
 
-func create_inventory(inventory_size : int = 0) -> Inventory:
-	return Inventory.new(inventory_size)
+
+func get_seller_inventory(inventory_size : int = 0) -> Inventory:
+	if not seller_inventory:
+		seller_inventory = Inventory.new(inventory_size)
+	return seller_inventory
+
+
+func get_external_inventory() -> Inventory :
+	if not external_inventory:
+		external_inventory = Inventory.new()
+		external_inventory.create_empty_slot(3)
+	return external_inventory
 
 
 func inventory_to_order(inventory : Inventory) -> Order:

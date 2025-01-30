@@ -34,23 +34,30 @@ func set_inventory_from_dict(inventory_base) -> void:
 			if potion.id == potion_type.id:
 				slots.append(Slot.new(potion, potion_type.quantity))
 	
-	# while there is only 3 potions resources
-	var to_fill_empty_space = inventory_base.size() - Resources.potions.size()
-	for i in range(to_fill_empty_space):
+	## while there is only 3 potions resources
+	#var to_fill_empty_space = inventory_base.size() - Resources.potions.size()
+	#for i in range(to_fill_empty_space):
+		#slots.append(Slot.new())
+
+
+func create_empty_slot(nb_slot: int):
+	for i in range(nb_slot):
 		slots.append(Slot.new())
+	inventory_updated.emit(self)
 
 
-func create_slot(potion : Potion) -> Slot:
-	var new_slot = Slot.new()
-	new_slot.potion = potion
-	new_slot.quantity = 0
-	return new_slot
-
-
-func grab_slot(index: int) -> Slot:
-	var slot = slots[index]
-	if slot:
-		slots[index] = null
+func grab_slot(index: int, button: int) -> Slot:
+	if slots[index] and slots[index].quantity > 0:
+		var slot = Slot.new(slots[index].potion, 0)
+		if button == MOUSE_BUTTON_LEFT:
+			slot.quantity = slots[index].quantity
+			slots[index].quantity = 0
+		else:
+			slot = Slot.new(
+			slots[index].potion,
+			slots[index].quantity / 2
+			)
+			slots[index].quantity -= slot.quantity
 		inventory_updated.emit(self)
 		return slot
 	else:
@@ -58,26 +65,23 @@ func grab_slot(index: int) -> Slot:
 
 
 func drop_slot(grabbed_slot: Slot, index: int) -> Slot:
-	var slot = slots[index]
-	
+	var target_slot = slots[index]
 	var returned_slot: Slot
-	if slot and slot.can_fully_merge_with(grabbed_slot):
-		slot.fully_merge_with(grabbed_slot)
+	if target_slot and target_slot.can_fully_merge_with(grabbed_slot):
+		target_slot.fully_merge_with(grabbed_slot)
 	else:
-		slots[index] = grabbed_slot
-		returned_slot = slot
+		returned_slot = grabbed_slot
 		
 	inventory_updated.emit(self)
 	return returned_slot
 
 
 func drop_single_slot(grabbed_slot: Slot, index: int) -> Slot:
-	var slot = slots[index]
-	
-	if not slot:
+	var target_slot = slots[index]
+	if not target_slot:
 		slots[index] = grabbed_slot.duplicate_single_slot()
-	elif slot.can_fully_merge_with(grabbed_slot):
-		slot.fully_merge_with(grabbed_slot.duplicate_single_slot())
+	elif target_slot.can_fully_merge_with(grabbed_slot):
+		target_slot.fully_merge_with(grabbed_slot.duplicate_single_slot())
 		
 	inventory_updated.emit(self)
 	

@@ -5,12 +5,12 @@ const SlotView = preload("res://Inventory/slot_view.tscn")
 @onready var item_grid: GridContainer = $MarginContainer/NinePatchRect/ItemGrid
 
 
-func set_inventory(inventory: Inventory) -> void:
+func set_inventory_view(inventory: Inventory) -> void:
 	inventory.inventory_updated.connect(populate_item_grid)
 	populate_item_grid(inventory)
 
 
-func clear_inventory(inventory: Inventory) -> void:
+func clear_inventory_view(inventory: Inventory) -> void:
 	inventory.inventory_updated.disconnect(populate_item_grid)
 
 
@@ -26,5 +26,5 @@ func populate_item_grid(inventory: Inventory) -> void:
 		
 		slot_view.slot_clicked.connect(inventory.on_slot_clicked)
 		
-		if slot:
-			slot_view.set_slot_data(slot)
+		if slot.potion:
+			slot_view.set_slot_view(slot)

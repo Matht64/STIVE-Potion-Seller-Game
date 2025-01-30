@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckfmytxlgd2jn"]
+[gd_scene load_steps=7 format=3 uid="uid://ckfmytxlgd2jn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_35lys"]
 [ext_resource type="PackedScene" uid="uid://djn3x2ttwlq7e" path="res://Supplier/stock_view.tscn" id="2_o0q2y"]
+[ext_resource type="PackedScene" uid="uid://lx866nl7wyh8" path="res://Customer/customer_manager_view.tscn" id="2_qh8p1"]
 [ext_resource type="Script" path="res://Inventory/inventory_manager_view.gd" id="3_lao7d"]
 [ext_resource type="PackedScene" uid="uid://db82ggjho8g8t" path="res://Inventory/inventory_view.tscn" id="4_b5rrs"]
 [ext_resource type="PackedScene" uid="uid://vrjnaxlb2c6e" path="res://Inventory/slot_view.tscn" id="5_81qsx"]
@@ -36,6 +37,9 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="CustomerInterface" parent="UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG" instance=ExtResource("2_qh8p1")]
+layout_mode = 1
+
 [node name="Counter" type="Panel" parent="UI/ScreenHbox/LeftScreen/LeftVBoxContainer"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
@@ -62,21 +66,22 @@ script = ExtResource("3_lao7d")
 [node name="SellerInventory" parent="UI/ScreenHbox/RightScreen/InventoryInterface" instance=ExtResource("4_b5rrs")]
 layout_mode = 0
 
-[node name="GrabbedSlot" parent="UI/ScreenHbox/RightScreen/InventoryInterface" instance=ExtResource("5_81qsx")]
-visible = false
-modulate = Color(1, 1, 1, 0.509804)
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 90.0
-offset_bottom = 90.0
-
 [node name="ExternalInventory" parent="UI/ScreenHbox/RightScreen/InventoryInterface" instance=ExtResource("4_b5rrs")]
 visible = false
 layout_mode = 0
 offset_left = -418.0
 offset_top = 241.0
-offset_right = -118.0
-offset_bottom = 399.0
+offset_right = -89.0
+offset_bottom = 554.0
+
+[node name="GrabbedSlot" parent="UI/ScreenHbox/RightScreen/InventoryInterface" instance=ExtResource("5_81qsx")]
+visible = false
+modulate = Color(1, 1, 1, 0.509804)
+self_modulate = Color(1, 1, 1, 0)
+z_index = 10
+layout_mode = 2
+offset_right = 90.0
+offset_bottom = 90.0
 
 [node name="Golds" type="Label" parent="UI/ScreenHbox/RightScreen"]
 layout_mode = 1
@@ -99,6 +104,6 @@ offset_top = 597.0
 offset_right = 228.0
 offset_bottom = 628.0
 toggle_mode = true
-text = "Suppliers and Stock"
+text = "End Day"
 
 [connection signal="pressed" from="UI/ScreenHbox/RightScreen/Suppliers" to="." method="_on_suppliers_pressed"]
