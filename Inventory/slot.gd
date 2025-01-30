@@ -1,29 +1,30 @@
-extends PanelContainer
+extends Resource
 
-signal slot_clicked(index: int, button: int)
+class_name Slot
 
-@onready var texture_rect: TextureRect = $MarginContainer/TextureRect
-@onready var quantity_label: Label = $QuantityLabel
-
-func set_slot_data(slot_data: SlotData) -> void:
-	var item_data = slot_data.item_data
-	texture_rect.texture = item_data.texture
-	tooltip_text = "%s\n%s" % [item_data.name]
-	
-	#show the quantity only if it's more than 1 else make it grey
-	if slot_data.quantity > 0:
-		quantity_label.text = "x%s" % slot_data.quantity
-		quantity_label.show()
-		#item_data.is_grabbable = true
-	else:
-		quantity_label.hide()
-		texture_rect.modulate = Color(1,1,1,0.5)
-		#item_data.is_grabbable = false
+@export var potion : Potion
+@export var quantity : int
 
 
-func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton \
-			and (event.button_index == MOUSE_BUTTON_LEFT \
-			or event.button_index == MOUSE_BUTTON_RIGHT) \
-			and event.is_pressed():
-		slot_clicked.emit(get_index(), event.button_index)
+func _init(_potion : Potion = null, _quantity : int = 0) -> void:
+	self.potion = _potion
+	self.quantity = _quantity
+
+
+func can_fully_merge_with(other_slot: Slot) -> bool:
+	return self.potion == other_slot.potion
+
+
+func fully_merge_with(other_slot: Slot) -> void:
+	self.quantity += other_slot.quantity
+
+
+func duplicate_single_slot() -> Slot:
+	var new_slot = duplicate()
+	new_slot.quantity = 1
+	self.quantity -= 1
+	return new_slot
+
+
+func increment_potion(quantity_to_add : int) -> void :
+	self.quantity += quantity_to_add

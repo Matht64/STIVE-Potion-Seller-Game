@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="TestJeuGodot"
-run/main_scene="res://Scenes/menu.tscn"
+run/main_scene="res://Menu/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Scripts/global.gd"
-Api="*res://Scripts/api.gd"
-player_data="*res://Scripts/player_data.gd"
+Global="*res://Global/global.gd"
+Api="*res://Global/api.gd"
+Resources="*res://Global/Resources/resources.gd"
 
 [dotnet]
 

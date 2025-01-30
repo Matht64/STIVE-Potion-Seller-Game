@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi027oda5r13j"]
+
+[ext_resource type="Script" path="res://Customer/customer_view.gd" id="1_56opx"]
+
+[node name="CustomerView" type="Node2D" groups=["external_inventory"]]
+position = Vector2(0, 23)
+script = ExtResource("1_56opx")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 100.0
+offset_bottom = 150.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 100.0
+offset_bottom = 150.0
+metadata/_edit_use_anchors_ = true
+
+[node name="NameLabel" type="Label" parent="."]
+offset_top = -23.0
+offset_right = 100.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="gui_input" from="TextureRect" to="." method="_on_gui_input"]
