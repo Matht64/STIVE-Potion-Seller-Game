@@ -6,8 +6,8 @@ const SupplierView = preload("res://Supplier/supplier_view.tscn")
 #const test_stock = preload("res://test_stock.tres")
 #
 #
-#func set_stock_data(stock_data: StockData) -> void :
-	#populate_supplier_grid(test_stock)
+func set_stock_view(supplier_manager: SupplierManager) -> void :
+	populate_supplier_grid(supplier_manager)
 
 
 func populate_supplier_grid(supplier_manager: SupplierManager) -> void:

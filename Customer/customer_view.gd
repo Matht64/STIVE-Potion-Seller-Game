@@ -1,4 +1,4 @@
-extends Node2D
+extends PanelContainer
 
 signal customer_clicked(index: int)
 
@@ -8,7 +8,7 @@ signal customer_clicked(index: int)
 
 func set_customer_view(customer: Customer) -> void:
 	name_label.text = customer.name 
-	texture_rect.texture = customer.texture
+	texture_rect.texture = customer.image
 
 
 func _on_gui_input(event: InputEvent) -> void:

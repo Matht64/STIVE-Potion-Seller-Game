@@ -33,11 +33,6 @@ func set_inventory_from_dict(inventory_base) -> void:
 		for potion in Resources.potions:
 			if potion.id == potion_type.id:
 				slots.append(Slot.new(potion, potion_type.quantity))
-	
-	## while there is only 3 potions resources
-	#var to_fill_empty_space = inventory_base.size() - Resources.potions.size()
-	#for i in range(to_fill_empty_space):
-		#slots.append(Slot.new())
 
 
 func create_empty_slot(nb_slot: int):

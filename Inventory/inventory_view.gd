@@ -6,15 +6,15 @@ const SlotView = preload("res://Inventory/slot_view.tscn")
 
 
 func set_inventory_view(inventory: Inventory) -> void:
-	inventory.inventory_updated.connect(populate_item_grid)
-	populate_item_grid(inventory)
+	inventory.inventory_updated.connect(populate_inventory_view)
+	populate_inventory_view(inventory)
 
 
 func clear_inventory_view(inventory: Inventory) -> void:
-	inventory.inventory_updated.disconnect(populate_item_grid)
+	inventory.inventory_updated.disconnect(populate_inventory_view)
 
 
-func populate_item_grid(inventory: Inventory) -> void:
+func populate_inventory_view(inventory: Inventory) -> void:
 	# clear the inventory
 	for child in item_grid.get_children():
 		child.queue_free()

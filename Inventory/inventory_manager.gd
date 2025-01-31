@@ -12,11 +12,11 @@ func get_seller_inventory(inventory_size : int = 0) -> Inventory:
 	return seller_inventory
 
 
-func get_external_inventory() -> Inventory :
-	if not external_inventory:
-		external_inventory = Inventory.new()
-		external_inventory.create_empty_slot(3)
-	return external_inventory
+#func get_external_inventory() -> Inventory :
+	#if not external_inventory:
+		#external_inventory = Inventory.new()
+		#external_inventory.create_empty_slot(3)
+	#return external_inventory
 
 
 func inventory_to_order(inventory : Inventory) -> Order:

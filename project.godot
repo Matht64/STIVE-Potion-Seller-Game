@@ -29,6 +29,10 @@ project/assembly_name="TestJeuGodot"
 
 enabled=PackedStringArray()
 
+[global_group]
+
+external_inventories=""
+
 [physics]
 
 3d/default_gravity=9.81
