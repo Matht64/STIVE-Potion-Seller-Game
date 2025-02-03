@@ -21,6 +21,6 @@ func order_to_inventory(_order: Order = self.order) -> Inventory:
 	var new_inventory = Inventory.new()
 	for order_line in _order.order_lines:
 		new_inventory.slots.append(
-			Slot.new(order_line.potion, order_line.quantity)
+			Slot.new(order_line.potion, 0)
 			)
 	return new_inventory

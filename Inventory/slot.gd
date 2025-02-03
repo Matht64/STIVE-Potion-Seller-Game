@@ -12,7 +12,7 @@ func _init(_potion : Potion = null, _quantity : int = 0) -> void:
 
 
 func can_fully_merge_with(other_slot: Slot) -> bool:
-	return self.potion == other_slot.potion or not self.potion
+	return self.potion.id == other_slot.potion.id or not self.potion
 
 
 func fully_merge_with(other_slot: Slot) -> void:

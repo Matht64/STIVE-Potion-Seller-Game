@@ -2,7 +2,6 @@ extends Control
 
 @onready var margin_container: MarginContainer = $MarginContainer
 
-signal toggle_inventory(customer: Customer)
 
 const CUSTOMER_VIEW = preload("res://Customer/customer_view.tscn")
 
@@ -11,8 +10,8 @@ func set_customer_view(customer_manager: CustomerManager) -> void:
 	populate_customer_manager_view(customer_manager)
 
 
-func clear_customer_manager_view(customer: Customer) -> void:
-	customer.customer_interract.disconnect(on_customer_interract)
+#func clear_customer_manager_view(customer: Customer) -> void:
+	#customer.customer_interract.disconnect(on_customer_interract)
 
 
 func populate_customer_manager_view(customer_manager: CustomerManager) -> void:
@@ -27,6 +26,3 @@ func populate_customer_manager_view(customer_manager: CustomerManager) -> void:
 
 	if customer:
 		customer_view.set_customer_view(customer)
-
-func on_customer_interract(customer: Customer) -> void:
-	toggle_inventory.emit(customer)

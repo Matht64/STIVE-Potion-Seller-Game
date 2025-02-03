@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_1wlgp"]
 script = ExtResource("2_ajn3n")
-price = 45
-quantity = 20
+price = 5
+quantity = 2
 potion = ExtResource("1_fy8se")
 
 [resource]

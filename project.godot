@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://Global/global.gd"
 Api="*res://Global/api.gd"
 Resources="*res://Global/Resources/resources.gd"
+S="*res://Global/seller_data.gd"
 
 [dotnet]
 

@@ -77,7 +77,6 @@ func drop_single_slot(grabbed_slot: Slot, index: int) -> Slot:
 		slots[index] = grabbed_slot.duplicate_single_slot()
 	elif target_slot.can_fully_merge_with(grabbed_slot):
 		target_slot.fully_merge_with(grabbed_slot.duplicate_single_slot())
-		
 	inventory_updated.emit(self)
 	
 	if grabbed_slot.quantity > 0:
@@ -86,17 +85,19 @@ func drop_single_slot(grabbed_slot: Slot, index: int) -> Slot:
 		return null
 
 
-#func increment_slot(potion: Potion, quantity, price) -> void:
-	##check if slot data exist and if multiple of same item_data add 1 or 10 to only one slot data
-	#for slot in slots:
-		#if slot: 
-			#if slot.potion == potion:
-				#slot.increment_item_data(quantity)
-				#seller.golds -= price
-				#print(seller.golds)
-				#inventory_updated.emit(self)
-				#return
-	#print("no item corresponding")
+func add_quantity(quantity : int, offer : Offer) -> void:
+	if (quantity * offer.price) <= S.seller.golds:
+		#check if slot data exist and if multiple of same item_data add 1 or 10 to only one slot data
+		for slot in slots:
+			if slot: 
+				if slot.potion.id == offer.potion.id:
+					slot.increment_potion(offer.quantity * quantity)
+					S.seller.golds -= offer.price * quantity
+					inventory_updated.emit(self)
+					return
+		print("no item corresponding")
+	else:
+		print("not enough money")
 
 
 func on_slot_clicked(index: int, button: int) -> void :

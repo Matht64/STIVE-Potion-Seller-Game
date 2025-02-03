@@ -80,4 +80,9 @@ text = "
 test"
 fit_content = true
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+flat = true
+
+[connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

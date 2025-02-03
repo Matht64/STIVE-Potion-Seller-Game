@@ -46,6 +46,7 @@ layout_mode = 2
 
 [node name="StockView" parent="UI/ScreenHbox/LeftScreen" instance=ExtResource("2_o0q2y")]
 visible = false
+z_as_relative = false
 layout_mode = 1
 
 [node name="RightScreen" type="Panel" parent="UI/ScreenHbox"]
@@ -68,11 +69,16 @@ layout_mode = 0
 
 [node name="ExternalInventory" parent="UI/ScreenHbox/RightScreen/InventoryInterface" groups=["external_inventories"] instance=ExtResource("4_b5rrs")]
 visible = false
-layout_mode = 0
-offset_left = -418.0
-offset_top = 241.0
-offset_right = -89.0
-offset_bottom = 554.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.29
+anchor_top = 0.404
+anchor_right = -1.29
+anchor_bottom = 0.404
+offset_left = 3.05176e-05
+offset_top = 0.207977
+offset_right = 329.0
+offset_bottom = 313.208
 
 [node name="GrabbedSlot" parent="UI/ScreenHbox/RightScreen/InventoryInterface" instance=ExtResource("5_81qsx")]
 visible = false

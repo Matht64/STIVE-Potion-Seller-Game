@@ -8,7 +8,7 @@ class_name Seller
 @export var inventory : Inventory
 
 
-func _init(_golds : int, _suppliers : Array[Supplier], _bonuses : Array, _inventory : Inventory) -> void:
+func _init(_golds : int = -1, _suppliers : Array[Supplier] = [], _bonuses : Array = [], _inventory : Inventory = null) -> void:
 	self.golds = _golds
 	self.suppliers = _suppliers
 	self.bonuses = _bonuses

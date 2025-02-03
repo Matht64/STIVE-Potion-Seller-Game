@@ -4,9 +4,12 @@ class_name SupplierManager
 
 @export var suppliers : Array[Supplier]
 
+signal supplier_interact(supplier: Supplier, button)
+
 func _init() -> void:
 	for supplier_res in Resources.suppliers:
 		suppliers.append(supplier_res)
+
 
 func get_suppliers_by_id(suppliers_ids : Array) -> Array[Supplier]:
 	var suppliers_by_ids : Array[Supplier] = []
@@ -15,3 +18,7 @@ func get_suppliers_by_id(suppliers_ids : Array) -> Array[Supplier]:
 			if supplier_id == supplier.id:
 				suppliers_by_ids.append(supplier)
 	return suppliers_by_ids
+
+
+func on_supplier_clicked(index : int, button : int) -> void :
+	supplier_interact.emit(suppliers[index], button)

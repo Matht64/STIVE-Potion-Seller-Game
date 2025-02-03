@@ -3,26 +3,41 @@
 [ext_resource type="Script" path="res://Customer/customer_view.gd" id="1_56opx"]
 
 [node name="CustomerView" type="PanelContainer" groups=["external_inventory"]]
-custom_minimum_size = Vector2(100, 170)
-offset_right = 100.0
-offset_bottom = 170.0
+custom_minimum_size = Vector2(0, 100)
+offset_right = 200.0
+offset_bottom = 150.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_56opx")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-metadata/_edit_use_anchors_ = true
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="NameLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "test"
+text = "NomClient"
 metadata/_edit_use_anchors_ = true
 
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="OrderLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Quantité et type de potion svp"
+autowrap_mode = 2
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="gui_input" from="TextureRect" to="." method="_on_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/VBoxContainer/TextureRect" to="." method="_on_gui_input"]

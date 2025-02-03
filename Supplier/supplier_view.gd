@@ -9,16 +9,17 @@ extends PanelContainer
 signal supplier_clicked(index: int, button: int)
 
 
-#func set_supplier_data(supplier_data: SupplierData) -> void:
-	#var item_data = supplier_data.item_data
-	#supplier_image.texture = supplier_data.texture
-	#potion_image.texture = item_data.texture
-	#supplier_info.text = ("\n\n%s" % supplier_data.name)
-	#potion_info.text = ("\n\n%s" % item_data.name)
-	#if not supplier_data.unlocked :
-		#panel.modulate = Color(1,1,1,0.5)
+func set_supplier_view(supplier: Supplier) -> void:
+	var potion = supplier.offer.potion
+	supplier_image.texture = supplier.image
+	potion_image.texture = potion.image
+	supplier_info.text = ("\n\n%s" % supplier.name)
+	potion_info.text = ("\n\n%s" % potion.name)
+	if not supplier in S.seller.suppliers:
+		panel.modulate = Color(1,1,1,0.5)
 
-func _on_gui_input(event: InputEvent) -> void:
+
+func _on_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 			and (event.button_index == MOUSE_BUTTON_LEFT \
 			or event.button_index == MOUSE_BUTTON_RIGHT) \
