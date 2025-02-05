@@ -1,11 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckfmytxlgd2jn"]
+[gd_scene load_steps=11 format=3 uid="uid://ckfmytxlgd2jn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_35lys"]
 [ext_resource type="PackedScene" uid="uid://djn3x2ttwlq7e" path="res://Supplier/stock_view.tscn" id="2_o0q2y"]
 [ext_resource type="PackedScene" uid="uid://lx866nl7wyh8" path="res://Customer/customer_manager_view.tscn" id="2_qh8p1"]
 [ext_resource type="Script" path="res://Inventory/inventory_manager_view.gd" id="3_lao7d"]
 [ext_resource type="PackedScene" uid="uid://db82ggjho8g8t" path="res://Inventory/inventory_view.tscn" id="4_b5rrs"]
+[ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Images/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="4_nclon"]
 [ext_resource type="PackedScene" uid="uid://vrjnaxlb2c6e" path="res://Inventory/slot_view.tscn" id="5_81qsx"]
+[ext_resource type="PackedScene" uid="uid://dupwpw8kfufbg" path="res://Popup/popups.tscn" id="7_hpbp8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhcyp"]
+atlas = ExtResource("4_nclon")
+region = Rect2(384, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8ye4"]
+atlas = ExtResource("4_nclon")
+region = Rect2(352, 384, 32, 32)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_35lys")
@@ -49,6 +59,17 @@ visible = false
 z_as_relative = false
 layout_mode = 1
 
+[node name="CheckInventorySell" type="Button" parent="UI/ScreenHbox/LeftScreen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 719.0
+offset_top = 220.0
+offset_right = 790.0
+offset_bottom = 260.0
+text = "Sell"
+icon = SubResource("AtlasTexture_fhcyp")
+
 [node name="RightScreen" type="Panel" parent="UI/ScreenHbox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
@@ -69,6 +90,7 @@ layout_mode = 0
 
 [node name="ExternalInventory" parent="UI/ScreenHbox/RightScreen/InventoryInterface" groups=["external_inventories"] instance=ExtResource("4_b5rrs")]
 visible = false
+z_index = 5
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -1.29
@@ -97,14 +119,22 @@ anchor_left = 0.68
 anchor_top = 0.48
 anchor_right = 0.68
 anchor_bottom = 0.48
-offset_left = -92.0
+offset_left = -118.0
 offset_top = -0.0400085
-offset_right = 81.0
+offset_right = 55.0
 offset_bottom = 22.96
-text = "0 gold(s)"
+text = "0"
 horizontal_alignment = 2
 
-[node name="Suppliers" type="Button" parent="UI/ScreenHbox/RightScreen"]
+[node name="TextureRect" type="TextureRect" parent="UI/ScreenHbox/RightScreen"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 308.0
+offset_right = 296.0
+offset_bottom = 340.0
+texture = SubResource("AtlasTexture_r8ye4")
+
+[node name="EndDay" type="Button" parent="UI/ScreenHbox/RightScreen"]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 597.0
@@ -113,4 +143,10 @@ offset_bottom = 628.0
 toggle_mode = true
 text = "End Day"
 
-[connection signal="pressed" from="UI/ScreenHbox/RightScreen/Suppliers" to="." method="_on_suppliers_pressed"]
+[node name="Popups" parent="UI" instance=ExtResource("7_hpbp8")]
+unique_name_in_owner = true
+z_index = 110
+
+[connection signal="pressed" from="UI/ScreenHbox/LeftScreen/CheckInventorySell" to="." method="_on_check_inventory_sell_button_pressed"]
+[connection signal="visibility_changed" from="UI/ScreenHbox/RightScreen/InventoryInterface/ExternalInventory" to="." method="_on_external_inventory_visibility_changed"]
+[connection signal="pressed" from="UI/ScreenHbox/RightScreen/EndDay" to="." method="_on_end_day_pressed"]

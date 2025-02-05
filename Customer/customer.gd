@@ -14,8 +14,13 @@ func _init(_id : int = -1, _name : String = "", _image : AtlasTexture = null, _o
 	self.image = _image
 	self.order = _order
 
-func compareOrder(orderB : Order) -> bool :
-	return self.order == orderB
+func compare_order(orderB : Order) -> bool :
+	for order_lineA in self.order.order_lines:
+		for order_lineB in orderB.order_lines:
+			if not (order_lineA.potion.id == order_lineB.potion.id &&\
+				order_lineA.quantity == order_lineB.quantity) :
+					return false
+	return true
 
 func order_to_inventory(_order: Order = self.order) -> Inventory:
 	var new_inventory = Inventory.new()

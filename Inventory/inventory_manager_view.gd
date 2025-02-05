@@ -26,12 +26,11 @@ func set_external_inventory_view(_external_inventory : Inventory) -> void:
 	external_inventory_view.set_inventory_view(external_inventory)
 	external_inventory_view.show()
 
-
+# à recoder
 func clear_external_inventory_view() -> void:
 	if external_inventory: 
-		var inventory = external_inventory.inventory
-		inventory.inventory_interact.disconnect(on_inventory_interact)
-		external_inventory_view.clear_inventory_view(inventory)
+		external_inventory.inventory_interact.disconnect(on_inventory_interact)
+		external_inventory_view.clear_inventory_view(external_inventory)
 		external_inventory_view.hide()
 		external_inventory = null
 

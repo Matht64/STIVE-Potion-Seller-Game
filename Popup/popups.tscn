@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://dupwpw8kfufbg"]
+
+[ext_resource type="Script" path="res://Popup/popups.gd" id="1_ja7cb"]
+[ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Images/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="2_1us4x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yps2c"]
+atlas = ExtResource("2_1us4x")
+region = Rect2(0, 0, 32, 32)
+
+[node name="Popups" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ja7cb")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InfoPopup" type="PopupPanel" parent="UI"]
+unique_name_in_owner = true
+size = Vector2i(400, 100)
+always_on_top = true
+min_size = Vector2i(150, 40)
+max_size = Vector2i(400, 100)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/InfoPopup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 96.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/InfoPopup/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Label" type="Label" parent="UI/InfoPopup/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "information : "
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/InfoPopup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = SubResource("AtlasTexture_yps2c")
+icon_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/InfoPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 2.0
+value = 2.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+
+[connection signal="pressed" from="UI/InfoPopup/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

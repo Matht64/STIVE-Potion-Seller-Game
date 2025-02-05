@@ -85,7 +85,7 @@ func drop_single_slot(grabbed_slot: Slot, index: int) -> Slot:
 		return null
 
 
-func add_quantity(quantity : int, offer : Offer) -> void:
+func buy_from_supplier(quantity : int, offer : Offer) -> void:
 	if (quantity * offer.price) <= S.seller.golds:
 		#check if slot data exist and if multiple of same item_data add 1 or 10 to only one slot data
 		for slot in slots:
@@ -98,6 +98,15 @@ func add_quantity(quantity : int, offer : Offer) -> void:
 		print("no item corresponding")
 	else:
 		print("not enough money")
+
+
+func refill_inventory_with(returned_order: Order) -> void:
+	for order_line in returned_order.order_lines:
+		for slot in slots:
+			if slot: 
+				if slot.potion.id == order_line.potion.id:
+					slot.increment_potion(order_line.quantity)
+					inventory_updated.emit(self)
 
 
 func on_slot_clicked(index: int, button: int) -> void :

@@ -12,18 +12,11 @@ func get_seller_inventory(inventory_size : int = 0) -> Inventory:
 	return seller_inventory
 
 
-#func get_external_inventory() -> Inventory :
-	#if not external_inventory:
-		#external_inventory = Inventory.new()
-		#external_inventory.create_empty_slot(3)
-	#return external_inventory
-
-
 func inventory_to_order(inventory : Inventory) -> Order:
 	var new_order = Order.new()
 	new_order.order_lines.clear()
-	for slot_data in inventory.slot_datas:
+	for slot in inventory.slots:
 		new_order.order_lines.append(
-			new_order.create_order_line(slot_data.potion, slot_data.quantity)
+			new_order.create_order_line(slot.potion, slot.quantity)
 			)
 	return new_order
