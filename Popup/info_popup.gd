@@ -8,7 +8,7 @@ extends Control
 
 var closed = true
 
-func info_popup(info : String) -> void :
+func set_info_popup(info : String) -> void :
 	label.text = info
 	infoPopup.visible = true
 	timer.wait_time = pb.max_value

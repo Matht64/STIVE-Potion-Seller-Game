@@ -1,5 +1,6 @@
 extends Node
 
+#region Nouvelle section de code
 @onready var inventory_interface: Control = %InventoryInterface
 @onready var external_inventory_view: PanelContainer = $UI/ScreenHbox/RightScreen/InventoryInterface/ExternalInventory
 @onready var stock_view: Control = $UI/ScreenHbox/LeftScreen/StockView
@@ -7,17 +8,17 @@ extends Node
 @onready var end_day_button: Button = $UI/ScreenHbox/RightScreen/EndDay
 @onready var customer_interface: Control = $UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG/CustomerInterface
 @onready var check_inventory_sell_button : Button = %CheckInventorySell
-@onready var popup: Control = %Popups
+@onready var info_popup: Control = %InfoPopup
+@onready var interractive_popup: Control = %InterractivePopup
+@onready var save_menu_button: Button = %"Save&Menu"
 
+#endregion
+const MENU = preload("res://Menu/menu.tscn")
 
 var inventory_manager = InventoryManager.new()
 var supplier_manager = SupplierManager.new()
 var customer_manager = CustomerManager.new()
-
-
-var game_data = GameData.new()
-var save = game_data.saves[0]
-
+var save = game_data.saves[game_data.save_name]
 
 func _ready() -> void:
 	set_seller()
@@ -40,7 +41,7 @@ func set_seller() -> void:
 	inventory_interface.set_seller_inventory_view(inv)
 	S.seller.golds = save.golds
 	S.seller.suppliers = supplier_manager.get_suppliers_by_id(save.suppliers)
-	S.seller.bonuses = save.bonuses
+	S.seller.bonuses = [Bonus.new()] # save.bonuses
 	S.seller.inventory = inv
 
 
@@ -101,10 +102,10 @@ func on_supplier_interract(supplier : Supplier, button : int) -> void:
 		[true, MOUSE_BUTTON_RIGHT]:
 			inventory_manager.seller_inventory.buy_from_supplier(10, supplier.offer)
 		[false, MOUSE_BUTTON_LEFT]:
-			popup.info_popup("You must by it first")
+			info_popup.set_info_popup("You must buy it first")
 		[false, MOUSE_BUTTON_RIGHT]:
-			popup.info_popup("You must by it first")
-			# Vraie popup à coder
+			info_popup.set_info_popup("You must buy it first")
+			# interractive popup à coder
 
 
 func _on_end_day_pressed() -> void:
@@ -139,3 +140,9 @@ func _on_check_inventory_sell_button_pressed() -> void:
 
 func _on_external_inventory_visibility_changed() -> void:
 	check_inventory_sell_button.visible = not check_inventory_sell_button.visible
+
+
+func _on_save_menu_pressed() -> void:
+	# popup that save and exit
+	interractive_popup.set_interractive_popup("Do you wanna save and leave ?")
+	game_data.save_game()

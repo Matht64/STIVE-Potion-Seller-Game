@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckfmytxlgd2jn"]
+[gd_scene load_steps=12 format=3 uid="uid://ckfmytxlgd2jn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_35lys"]
 [ext_resource type="PackedScene" uid="uid://djn3x2ttwlq7e" path="res://Supplier/stock_view.tscn" id="2_o0q2y"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://db82ggjho8g8t" path="res://Inventory/inventory_view.tscn" id="4_b5rrs"]
 [ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Images/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="4_nclon"]
 [ext_resource type="PackedScene" uid="uid://vrjnaxlb2c6e" path="res://Inventory/slot_view.tscn" id="5_81qsx"]
-[ext_resource type="PackedScene" uid="uid://dupwpw8kfufbg" path="res://Popup/popups.tscn" id="7_hpbp8"]
+[ext_resource type="PackedScene" uid="uid://dupwpw8kfufbg" path="res://Popup/info_popup.tscn" id="7_hpbp8"]
+[ext_resource type="PackedScene" uid="uid://dy2iqulqcbvck" path="res://Popup/interractive_popup.tscn" id="9_885r4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhcyp"]
 atlas = ExtResource("4_nclon")
@@ -143,10 +144,25 @@ offset_bottom = 628.0
 toggle_mode = true
 text = "End Day"
 
-[node name="Popups" parent="UI" instance=ExtResource("7_hpbp8")]
+[node name="Save&Menu" type="Button" parent="UI/ScreenHbox/RightScreen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 185.0
+offset_top = 414.0
+offset_right = 291.0
+offset_bottom = 445.0
+text = "Exit to menu"
+
+[node name="InfoPopup" parent="UI" instance=ExtResource("7_hpbp8")]
 unique_name_in_owner = true
 z_index = 110
+
+[node name="InterractivePopup" parent="UI" instance=ExtResource("9_885r4")]
+unique_name_in_owner = true
+visible = false
+top_level = true
 
 [connection signal="pressed" from="UI/ScreenHbox/LeftScreen/CheckInventorySell" to="." method="_on_check_inventory_sell_button_pressed"]
 [connection signal="visibility_changed" from="UI/ScreenHbox/RightScreen/InventoryInterface/ExternalInventory" to="." method="_on_external_inventory_visibility_changed"]
 [connection signal="pressed" from="UI/ScreenHbox/RightScreen/EndDay" to="." method="_on_end_day_pressed"]
+[connection signal="pressed" from="UI/ScreenHbox/RightScreen/Save&Menu" to="." method="_on_save_menu_pressed"]
