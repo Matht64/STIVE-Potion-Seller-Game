@@ -36,6 +36,10 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="PanelContainer"]
+layout_mode = 2
+color = Color(0.29, 0.29, 0.29, 1)
+
 [node name="BG" type="Panel" parent="PanelContainer"]
 clip_contents = true
 layout_mode = 2

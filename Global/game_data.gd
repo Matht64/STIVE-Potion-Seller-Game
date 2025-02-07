@@ -111,3 +111,4 @@ func new_game_save(new_save_name: String) -> bool:
 
 func delete_game_save(to_delete_save_name: String) -> void:
 	saves.erase(to_delete_save_name)
+	set_save_file()

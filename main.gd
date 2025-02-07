@@ -1,6 +1,6 @@
 extends Node
 
-#region Nouvelle section de code
+#region Variables Graphiques
 @onready var inventory_interface: Control = %InventoryInterface
 @onready var external_inventory_view: PanelContainer = $UI/ScreenHbox/RightScreen/InventoryInterface/ExternalInventory
 @onready var stock_view: Control = $UI/ScreenHbox/LeftScreen/StockView
@@ -13,12 +13,17 @@ extends Node
 @onready var save_menu_button: Button = %"Save&Menu"
 
 #endregion
-const MENU = preload("res://Menu/menu.tscn")
+
+#region Variables Diverses
+const MENU = "res://Menu/menu.tscn"
+const TITLE_SCREEN = "res://Menu/TitleScreen.tscn"
 
 var inventory_manager = InventoryManager.new()
 var supplier_manager = SupplierManager.new()
 var customer_manager = CustomerManager.new()
 var save = game_data.saves[game_data.save_name]
+#endregion
+
 
 func _ready() -> void:
 	set_seller()
@@ -32,7 +37,16 @@ func _process(_delta: float) -> void:
 
 func check_game_state() -> void :
 	if S.seller.golds < 0:
-		print("you lose")
+		interractive_popup.set_interractive_popup("YOU LOSE")
+		var to_title_button = Button.new()
+		to_title_button.text = "Return to Screen-Title"
+		to_title_button.connect("pressed", _on_to_title_button_pressed)
+		var exit_game_button = Button.new()
+		exit_game_button.text = "Exit the Game"
+		exit_game_button.connect("pressed", _on_exit_game_button_pressed)
+		interractive_popup.v_box_container.add_child(to_title_button)
+		interractive_popup.v_box_container.add_child(exit_game_button)
+		game_data.delete_game_save(game_data.save_name)
 
 
 func set_seller() -> void:
@@ -102,10 +116,11 @@ func on_supplier_interract(supplier : Supplier, button : int) -> void:
 		[true, MOUSE_BUTTON_RIGHT]:
 			inventory_manager.seller_inventory.buy_from_supplier(10, supplier.offer)
 		[false, MOUSE_BUTTON_LEFT]:
-			info_popup.set_info_popup("You must buy it first")
+			if not interractive_popup.visible:
+				handle_supplier_unlocking_popup(supplier)
 		[false, MOUSE_BUTTON_RIGHT]:
-			info_popup.set_info_popup("You must buy it first")
-			# interractive popup à coder
+			if not interractive_popup.visible:
+				handle_supplier_unlocking_popup(supplier)
 
 
 func _on_end_day_pressed() -> void:
@@ -113,6 +128,22 @@ func _on_end_day_pressed() -> void:
 		end_the_day()
 	else:
 		set_new_day()
+
+
+func handle_supplier_unlocking_popup(supplier: Supplier) -> void :
+	interractive_popup.set_interractive_popup("You must buy it first :")
+	var price = Label.new()
+	price.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	price.text = "%s golds" % supplier.unlock_price
+	var unlock_supplier_button = Button.new()
+	unlock_supplier_button.text = "Unlock"
+	unlock_supplier_button.connect("pressed", _on_unlock_supplier_button_pressed.bind(supplier))
+	var cancel_button = Button.new()
+	cancel_button.text = "Cancel"
+	cancel_button.connect("pressed", _on_cancel_button_pressed)
+	interractive_popup.v_box_container.add_child(price)
+	interractive_popup.v_box_container.add_child(unlock_supplier_button)
+	interractive_popup.v_box_container.add_child(cancel_button)
 
 
 func end_the_day() -> void :
@@ -143,6 +174,38 @@ func _on_external_inventory_visibility_changed() -> void:
 
 
 func _on_save_menu_pressed() -> void:
-	# popup that save and exit
-	interractive_popup.set_interractive_popup("Do you wanna save and leave ?")
-	game_data.save_game()
+	if end_day_button.text == "End Day":
+		info_popup.set_info_popup("Finish the day first")
+	else:
+		game_data.save_game()
+		get_tree().change_scene_to_file(MENU)
+
+
+func _on_to_title_button_pressed() -> void:
+	get_tree().change_scene_to_file(TITLE_SCREEN)
+
+
+func _on_exit_game_button_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_unlock_supplier_button_pressed(supplier: Supplier) -> void:
+	if S.seller.golds >= supplier.unlock_price:
+		supplier_manager.unlock_supplier(supplier)
+		S.seller.golds -= supplier.unlock_price
+		stock_view.set_stock_view(supplier_manager)
+		interractive_popup.clear_popup()
+	else:
+		info_popup.set_info_popup("Not enough money")
+
+
+func _on_cancel_button_pressed() -> void:
+	interractive_popup.clear_popup()
+
+
+func _on_addgold_pressed() -> void:
+	S.seller.golds += 100
+
+
+func _on_lose_pressed() -> void:
+	S.seller.golds = -1

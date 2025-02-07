@@ -11,7 +11,7 @@ const TITLE_SCREEN = preload("res://Menu/TitleScreen.tscn")
 func _ready() -> void:
 	for save_name in game_data.saves.keys():
 		var new_button = Button.new()
-		new_button.text = save_name + " %s" % game_data.saves[save_name].golds
+		new_button.text = save_name + ": %s golds" % game_data.saves[save_name].golds
 		new_button.connect("pressed", on_save_pressed.bind(save_name))
 		VerticalSaveMenu.add_child(new_button)
 	
@@ -43,6 +43,7 @@ func _on_new_game_button_pressed() -> void:
 	
 	interractive_popup.v_box_container.add_child(text_edit)
 	interractive_popup.v_box_container.add_child(confirm_button)
+	text_edit.grab_focus()
 
 
 func _on_confirm_button_pressed(text_field: TextEdit) -> void:
@@ -52,15 +53,14 @@ func _on_confirm_button_pressed(text_field: TextEdit) -> void:
 		print("Name already taken, try another one pls")
 
 
-func _on_gui_input(event: InputEvent) -> void:
-	print(event)
-	if event is InputEventKey \
-			and event.button_index == KEY_ESCAPE \
-			and event.is_pressed():
-		if interractive_popup.visible :
-			interractive_popup.clear_popup()
-		else:
-			get_tree().change_scene_to_packed(TITLE_SCREEN)
+#func _on_gui_input(event: InputEvent) -> void:
+	#if event is InputEventKey \
+			#and event.button_index == KEY_ESCAPE \
+			#and event.is_pressed():
+		#if interractive_popup.visible :
+			#interractive_popup.clear_popup()
+		#else:
+			#get_tree().change_scene_to_packed(TITLE_SCREEN)
 
 
 #func get_distant_game_data(data) -> JSON:

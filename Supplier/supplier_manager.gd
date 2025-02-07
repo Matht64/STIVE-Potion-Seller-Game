@@ -10,6 +10,9 @@ func _init() -> void:
 	for supplier_res in Resources.suppliers:
 		suppliers.append(supplier_res)
 
+func unlock_supplier(supplier: Supplier) -> void:
+	S.seller.suppliers.append(supplier)
+	
 
 func get_suppliers_by_id(suppliers_ids : Array) -> Array[Supplier]:
 	var suppliers_by_ids : Array[Supplier] = []

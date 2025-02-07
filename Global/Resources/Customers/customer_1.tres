@@ -1,7 +1,13 @@
-[gd_resource type="Resource" script_class="Customer" load_steps=2 format=3 uid="uid://dmtonaiu3h326"]
+[gd_resource type="Resource" script_class="Customer" load_steps=4 format=3 uid="uid://dmtonaiu3h326"]
 
+[ext_resource type="Texture2D" uid="uid://b7wvn4k65iyp" path="res://Images/pixel/pixel_terry.png" id="1_0j0jo"]
 [ext_resource type="Script" path="res://Customer/customer.gd" id="1_3b1ow"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8c37"]
+atlas = ExtResource("1_0j0jo")
 
 [resource]
 script = ExtResource("1_3b1ow")
+id = 0
 name = "Terry"
+image = SubResource("AtlasTexture_g8c37")

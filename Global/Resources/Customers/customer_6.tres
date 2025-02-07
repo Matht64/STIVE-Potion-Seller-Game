@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=4 format=3 uid="uid://bqedo2bh6n6pb"]
+
+[ext_resource type="Texture2D" uid="uid://b3g6k8rdkb7ik" path="res://Images/pixel/pixel_mathis.png" id="1_imsri"]
+[ext_resource type="Script" path="res://Customer/customer.gd" id="2_cl1un"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_her3v"]
+atlas = ExtResource("1_imsri")
+
+[resource]
+script = ExtResource("2_cl1un")
+id = 5
+name = "Mathis"
+image = SubResource("AtlasTexture_her3v")
