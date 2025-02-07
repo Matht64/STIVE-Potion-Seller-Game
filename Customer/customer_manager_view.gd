@@ -6,7 +6,7 @@ extends Control
 const CUSTOMER_VIEW = preload("res://Customer/customer_view.tscn")
 
 
-func set_customer_view(customer_manager: CustomerManager) -> void:
+func set_customers_view(customer_manager: CustomerManager) -> void:
 	populate_customer_manager_view(customer_manager)
 
 

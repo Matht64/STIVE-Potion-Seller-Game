@@ -4,7 +4,7 @@ class_name SupplierManager
 
 @export var suppliers : Array[Supplier]
 
-signal supplier_interact(supplier: Supplier, button)
+signal supplier_interract(supplier: Supplier, button)
 
 func _init() -> void:
 	for supplier_res in Resources.suppliers:
@@ -24,4 +24,4 @@ func get_suppliers_by_id(suppliers_ids : Array) -> Array[Supplier]:
 
 
 func on_supplier_clicked(index : int, button : int) -> void :
-	supplier_interact.emit(suppliers[index], button)
+	supplier_interract.emit(suppliers[index], button)

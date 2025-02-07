@@ -6,7 +6,7 @@ var external_inventory
 
 @onready var seller_inventory_view: PanelContainer = $SellerInventory
 @onready var grabbed_slot_view: PanelContainer = $GrabbedSlot
-@onready var external_inventory_view: PanelContainer = $ExternalInventory
+@onready var external_inventory_view: PanelContainer = %ExternalInventory
 
 
 func _physics_process(_delta: float) -> void:

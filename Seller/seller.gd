@@ -13,13 +13,3 @@ func _init(_golds : int = -1, _suppliers : Array[Supplier] = [], _bonuses : Arra
 	self.suppliers = _suppliers
 	self.bonuses = _bonuses
 	self.inventory = _inventory
-
-
-#func buy(offer: Offer) -> void :
-	#pass
-#
-#func sell(order: Order) -> void :
-	#pass
-#
-#func unlockSupplier(supplier: Supplier) -> void :
-	#pass

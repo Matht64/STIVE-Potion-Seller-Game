@@ -2,8 +2,9 @@ extends Node
 
 #region Variables Graphiques
 @onready var inventory_interface: Control = %InventoryInterface
-@onready var external_inventory_view: PanelContainer = $UI/ScreenHbox/RightScreen/InventoryInterface/ExternalInventory
+@onready var external_inventory_view: PanelContainer = %ExternalInventory
 @onready var stock_view: Control = $UI/ScreenHbox/LeftScreen/StockView
+@onready var bonus_interface: Control = %BonusInterface
 @onready var golds_label: Label = $UI/ScreenHbox/RightScreen/Golds
 @onready var end_day_button: Button = $UI/ScreenHbox/RightScreen/EndDay
 @onready var customer_interface: Control = $UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG/CustomerInterface
@@ -21,6 +22,7 @@ const TITLE_SCREEN = "res://Menu/TitleScreen.tscn"
 var inventory_manager = InventoryManager.new()
 var supplier_manager = SupplierManager.new()
 var customer_manager = CustomerManager.new()
+var bonus_manager = BonusManager.new()
 var save = game_data.saves[game_data.save_name]
 #endregion
 
@@ -29,6 +31,7 @@ func _ready() -> void:
 	set_seller()
 	set_customer()
 	set_suppliers()
+	set_bonuses()
 
 
 func _process(_delta: float) -> void:
@@ -49,26 +52,6 @@ func check_game_state() -> void :
 		game_data.delete_game_save(game_data.save_name)
 
 
-func set_seller() -> void:
-	var inv = inventory_manager.get_seller_inventory()
-	inv.set_inventory_from_dict(save.potions)
-	inventory_interface.set_seller_inventory_view(inv)
-	S.seller.golds = save.golds
-	S.seller.suppliers = supplier_manager.get_suppliers_by_id(save.suppliers)
-	S.seller.bonuses = [Bonus.new()] # save.bonuses
-	S.seller.inventory = inv
-
-
-func set_customer() -> void :
-	customer_manager.customer_interact.connect(on_customer_interract)
-	customer_interface.set_customer_view(customer_manager)
-
-
-func set_suppliers() -> void :
-	supplier_manager.supplier_interact.connect(on_supplier_interract)
-	stock_view.set_stock_view(supplier_manager)
-
-
 func apply_sale_result(order_to_check: Order) -> void:
 	# check if the sale match the customer.order
 	var correct_order = customer_manager.customers[0].compare_order(order_to_check)
@@ -85,6 +68,56 @@ func apply_sale_result(order_to_check: Order) -> void:
 	set_next_customer()
 
 
+func set_seller() -> void:
+	var inv = inventory_manager.get_seller_inventory()
+	inv.set_inventory_from_dict(save.potions)
+	inventory_interface.set_seller_inventory_view(inv)
+	S.seller.golds = save.golds
+	S.seller.suppliers = supplier_manager.get_suppliers_by_id(save.suppliers)
+	S.seller.bonuses = bonus_manager.get_bonuses_by_id(save.bonuses)
+	S.seller.inventory = inv
+
+
+func set_customer() -> void :
+	customer_manager.customer_interact.connect(on_customer_interract)
+	customer_interface.set_customers_view(customer_manager)
+
+
+func set_suppliers() -> void :
+	supplier_manager.supplier_interract.connect(on_supplier_interract)
+	stock_view.set_stock_view(supplier_manager)
+
+
+func set_bonuses() -> void :
+	bonus_manager.bonus_interract.connect(on_bonus_interract)
+	bonus_interface.set_bonuses_view(bonus_manager)
+
+
+func end_the_day() -> void :
+	stock_view.visible = not stock_view.visible
+	if external_inventory_view.visible:
+		_on_check_inventory_sell_button_pressed()
+	end_day_button.text = "Begin Day"
+	customer_interface.visible = false
+	external_inventory_view.visible = false
+	clear_customer()
+
+
+func set_new_day() -> void :
+	stock_view.visible = not stock_view.visible
+	end_day_button.text = "End Day"
+	customer_interface.visible = true
+	customer_manager.clear_and_create_customers(5)
+	customer_interface.set_customers_view(customer_manager)
+
+
+func set_next_customer() -> void:
+	if customer_manager.customers != []:
+		customer_interface.set_customers_view(customer_manager)
+	else:
+		end_the_day()
+
+
 func clear_customer() -> void:
 	inventory_manager.external_inventory = null
 	inventory_interface.clear_external_inventory_view()
@@ -92,11 +125,20 @@ func clear_customer() -> void:
 	customer_interface.clear_customer_manager_view()
 
 
-func set_next_customer() -> void:
-	if customer_manager.customers != []:
-		customer_interface.set_customer_view(customer_manager)
-	else:
-		end_the_day()
+func handle_supplier_unlocking_popup(supplier: Supplier) -> void :
+	interractive_popup.set_interractive_popup("You must buy it first :")
+	var price = Label.new()
+	price.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	price.text = "%s golds" % supplier.unlock_price
+	var unlock_supplier_button = Button.new()
+	unlock_supplier_button.text = "Unlock"
+	unlock_supplier_button.connect("pressed", _on_unlock_supplier_button_pressed.bind(supplier))
+	var cancel_button = Button.new()
+	cancel_button.text = "Cancel"
+	cancel_button.connect("pressed", _on_cancel_button_pressed)
+	interractive_popup.v_box_container.add_child(price)
+	interractive_popup.v_box_container.add_child(unlock_supplier_button)
+	interractive_popup.v_box_container.add_child(cancel_button)
 
 
 func on_customer_interract(customer : Customer = null) -> void:
@@ -123,43 +165,15 @@ func on_supplier_interract(supplier : Supplier, button : int) -> void:
 				handle_supplier_unlocking_popup(supplier)
 
 
+func on_bonus_interract(bonus: Bonus) -> void:
+	pass
+
+
 func _on_end_day_pressed() -> void:
 	if end_day_button.text == "End Day":
 		end_the_day()
 	else:
 		set_new_day()
-
-
-func handle_supplier_unlocking_popup(supplier: Supplier) -> void :
-	interractive_popup.set_interractive_popup("You must buy it first :")
-	var price = Label.new()
-	price.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	price.text = "%s golds" % supplier.unlock_price
-	var unlock_supplier_button = Button.new()
-	unlock_supplier_button.text = "Unlock"
-	unlock_supplier_button.connect("pressed", _on_unlock_supplier_button_pressed.bind(supplier))
-	var cancel_button = Button.new()
-	cancel_button.text = "Cancel"
-	cancel_button.connect("pressed", _on_cancel_button_pressed)
-	interractive_popup.v_box_container.add_child(price)
-	interractive_popup.v_box_container.add_child(unlock_supplier_button)
-	interractive_popup.v_box_container.add_child(cancel_button)
-
-
-func end_the_day() -> void :
-	stock_view.visible = not stock_view.visible
-	end_day_button.text = "Begin Day"
-	customer_interface.visible = false
-	external_inventory_view.visible = false
-	clear_customer()
-
-
-func set_new_day() -> void :
-	stock_view.visible = not stock_view.visible
-	end_day_button.text = "End Day"
-	customer_interface.visible = true
-	customer_manager.clear_and_create_customers(5)
-	customer_interface.set_customer_view(customer_manager)
 
 
 func _on_check_inventory_sell_button_pressed() -> void:
@@ -209,3 +223,4 @@ func _on_addgold_pressed() -> void:
 
 func _on_lose_pressed() -> void:
 	S.seller.golds = -1
+	check_game_state()

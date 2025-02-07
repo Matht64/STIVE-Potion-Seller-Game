@@ -100,7 +100,7 @@ func new_game_save(new_save_name: String) -> bool:
 				1
 			],
 			"bonuses": [
-				-1
+				0
 			],
 			"save_date": ""
 		}

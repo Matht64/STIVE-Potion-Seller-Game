@@ -8,7 +8,8 @@ var customers = [
 	load("res://Global/Resources/Customers/customer_5.tres"),
 	load("res://Global/Resources/Customers/customer_6.tres"),
 	load("res://Global/Resources/Customers/customer_7.tres"),
-	load("res://Global/Resources/Customers/customer_8.tres")
+	load("res://Global/Resources/Customers/customer_8.tres"),
+	load("res://Global/Resources/Customers/customer_9.tres")
 ]
 
 var potions = [
@@ -21,4 +22,10 @@ var suppliers = [
 	load("res://Global/Resources/Suppliers/supplier_1.tres"),
 	load("res://Global/Resources/Suppliers/supplier_2.tres"),
 	load("res://Global/Resources/Suppliers/supplier_3.tres")
+]
+
+var bonuses = [
+	load("res://Global/Resources/Bonuses/bonus_1.tres"),
+	load("res://Global/Resources/Bonuses/bonus_2.tres"),
+	load("res://Global/Resources/Bonuses/bonus_3.tres")
 ]

@@ -3,9 +3,10 @@
 [ext_resource type="Script" path="res://Customer/customer_view.gd" id="1_56opx"]
 
 [node name="CustomerView" type="PanelContainer" groups=["external_inventory"]]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 100)
-offset_right = 200.0
-offset_bottom = 150.0
+offset_right = 254.0
+offset_bottom = 177.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_56opx")

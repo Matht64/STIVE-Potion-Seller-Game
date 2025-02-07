@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Bonus" load_steps=2 format=3 uid="uid://dc01n2r7rdtr8"]
+
+[ext_resource type="Script" path="res://Bonus/bonus.gd" id="1_il6sw"]
+
+[resource]
+script = ExtResource("1_il6sw")
+id = 0
+type = "Boost Gold"
+duration = 1
+activated_time = ""

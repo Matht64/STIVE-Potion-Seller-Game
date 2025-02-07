@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Bonus" load_steps=2 format=3 uid="uid://crlvbxoqhxwd8"]
+
+[ext_resource type="Script" path="res://Bonus/bonus.gd" id="1_amknw"]
+
+[resource]
+script = ExtResource("1_amknw")
+id = 2
+type = "Reduce Debuff"
+duration = 1
+activated_time = ""
