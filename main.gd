@@ -10,7 +10,7 @@ extends Node
 @onready var customer_interface: Control = $UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG/CustomerInterface
 @onready var check_inventory_sell_button : Button = %CheckInventorySell
 @onready var info_popup: Control = %InfoPopup
-@onready var interractive_popup: Control = %InterractivePopup
+@onready var interactive_popup: Control = %InteractivePopup
 @onready var save_menu_button: Button = %"Save&Menu"
 
 #endregion
@@ -40,15 +40,15 @@ func _process(_delta: float) -> void:
 
 func check_game_state() -> void :
 	if S.seller.golds < 0:
-		interractive_popup.set_interractive_popup("YOU LOSE")
+		interactive_popup.set_interactive_popup("YOU LOSE")
 		var to_title_button = Button.new()
 		to_title_button.text = "Return to Screen-Title"
 		to_title_button.connect("pressed", _on_to_title_button_pressed)
 		var exit_game_button = Button.new()
 		exit_game_button.text = "Exit the Game"
 		exit_game_button.connect("pressed", _on_exit_game_button_pressed)
-		interractive_popup.v_box_container.add_child(to_title_button)
-		interractive_popup.v_box_container.add_child(exit_game_button)
+		interactive_popup.v_box_container.add_child(to_title_button)
+		interactive_popup.v_box_container.add_child(exit_game_button)
 		game_data.delete_game_save(game_data.save_name)
 
 
@@ -79,17 +79,17 @@ func set_seller() -> void:
 
 
 func set_customer() -> void :
-	customer_manager.customer_interact.connect(on_customer_interract)
+	customer_manager.customer_interact.connect(on_customer_interact)
 	customer_interface.set_customers_view(customer_manager)
 
 
 func set_suppliers() -> void :
-	supplier_manager.supplier_interract.connect(on_supplier_interract)
+	supplier_manager.supplier_interact.connect(on_supplier_interact)
 	stock_view.set_stock_view(supplier_manager)
 
 
 func set_bonuses() -> void :
-	bonus_manager.bonus_interract.connect(on_bonus_interract)
+	bonus_manager.bonus_interact.connect(on_bonus_interact)
 	bonus_interface.set_bonuses_view(bonus_manager)
 
 
@@ -126,7 +126,7 @@ func clear_customer() -> void:
 
 
 func handle_supplier_unlocking_popup(supplier: Supplier) -> void :
-	interractive_popup.set_interractive_popup("You must buy it first :")
+	interactive_popup.set_interactive_popup("You must buy it first :")
 	var price = Label.new()
 	price.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	price.text = "%s golds" % supplier.unlock_price
@@ -136,12 +136,12 @@ func handle_supplier_unlocking_popup(supplier: Supplier) -> void :
 	var cancel_button = Button.new()
 	cancel_button.text = "Cancel"
 	cancel_button.connect("pressed", _on_cancel_button_pressed)
-	interractive_popup.v_box_container.add_child(price)
-	interractive_popup.v_box_container.add_child(unlock_supplier_button)
-	interractive_popup.v_box_container.add_child(cancel_button)
+	interactive_popup.v_box_container.add_child(price)
+	interactive_popup.v_box_container.add_child(unlock_supplier_button)
+	interactive_popup.v_box_container.add_child(cancel_button)
 
 
-func on_customer_interract(customer : Customer = null) -> void:
+func on_customer_interact(customer : Customer = null) -> void:
 	if customer:
 		var external_inventory = customer.order_to_inventory()
 		inventory_manager.external_inventory = external_inventory
@@ -151,21 +151,21 @@ func on_customer_interract(customer : Customer = null) -> void:
 		inventory_interface.clear_external_inventory_view()
 
 
-func on_supplier_interract(supplier : Supplier, button : int) -> void:
+func on_supplier_interact(supplier : Supplier, button : int) -> void:
 	match [supplier in S.seller.suppliers, button]:
 		[true, MOUSE_BUTTON_LEFT]:
 			inventory_manager.seller_inventory.buy_from_supplier(1, supplier.offer)
 		[true, MOUSE_BUTTON_RIGHT]:
 			inventory_manager.seller_inventory.buy_from_supplier(10, supplier.offer)
 		[false, MOUSE_BUTTON_LEFT]:
-			if not interractive_popup.visible:
+			if not interactive_popup.visible:
 				handle_supplier_unlocking_popup(supplier)
 		[false, MOUSE_BUTTON_RIGHT]:
-			if not interractive_popup.visible:
+			if not interactive_popup.visible:
 				handle_supplier_unlocking_popup(supplier)
 
 
-func on_bonus_interract(bonus: Bonus) -> void:
+func on_bonus_interact(bonus: Bonus) -> void:
 	pass
 
 
@@ -208,13 +208,13 @@ func _on_unlock_supplier_button_pressed(supplier: Supplier) -> void:
 		supplier_manager.unlock_supplier(supplier)
 		S.seller.golds -= supplier.unlock_price
 		stock_view.set_stock_view(supplier_manager)
-		interractive_popup.clear_popup()
+		interactive_popup.clear_popup()
 	else:
 		info_popup.set_info_popup("Not enough money")
 
 
 func _on_cancel_button_pressed() -> void:
-	interractive_popup.clear_popup()
+	interactive_popup.clear_popup()
 
 
 func _on_addgold_pressed() -> void:

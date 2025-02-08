@@ -5,7 +5,7 @@ const TITLE_SCREEN = preload("res://Menu/TitleScreen.tscn")
 
 @onready var VerticalSaveMenu: VBoxContainer = %VerticalSaveMenu
 @onready var new_game_button: Button = %NewGameButton
-@onready var interractive_popup: Control = %InterractivePopup
+@onready var interactive_popup: Control = %InteractivePopup
 
 
 func _ready() -> void:
@@ -31,7 +31,7 @@ func on_save_pressed(button_name) -> void:
 
 
 func _on_new_game_button_pressed() -> void:
-	interractive_popup.set_interractive_popup("Write a save name :")
+	interactive_popup.set_interactive_popup("Write a save name :")
 	
 	var text_edit = TextEdit.new()
 	text_edit.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -41,8 +41,8 @@ func _on_new_game_button_pressed() -> void:
 	confirm_button.text = "Confirm"
 	confirm_button.connect("pressed", _on_confirm_button_pressed.bind(text_edit))
 	
-	interractive_popup.v_box_container.add_child(text_edit)
-	interractive_popup.v_box_container.add_child(confirm_button)
+	interactive_popup.v_box_container.add_child(text_edit)
+	interactive_popup.v_box_container.add_child(confirm_button)
 	text_edit.grab_focus()
 
 
@@ -57,8 +57,8 @@ func _on_confirm_button_pressed(text_field: TextEdit) -> void:
 	#if event is InputEventKey \
 			#and event.button_index == KEY_ESCAPE \
 			#and event.is_pressed():
-		#if interractive_popup.visible :
-			#interractive_popup.clear_popup()
+		#if interactive_popup.visible :
+			#interactive_popup.clear_popup()
 		#else:
 			#get_tree().change_scene_to_packed(TITLE_SCREEN)
 

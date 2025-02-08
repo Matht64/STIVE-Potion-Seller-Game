@@ -4,7 +4,7 @@ class_name BonusManager
 
 @export var bonuses: Array[Bonus]
 
-signal bonus_interract(bonus: Bonus)
+signal bonus_interact(bonus: Bonus)
 
 func _init() -> void:
 	for bonus_res in Resources.bonuses:
@@ -56,4 +56,4 @@ func apply_bonus_type_3(transaction : int) -> void:
 
 
 func _on_bonus_clicked(index : int) -> void:
-	bonus_interract.emit(bonuses[index])
+	bonus_interact.emit(bonuses[index])

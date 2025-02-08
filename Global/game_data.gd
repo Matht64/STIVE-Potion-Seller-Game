@@ -5,7 +5,7 @@ class_name GameData
 @export var saves : Dictionary 
 @export var save_name : String
 
-var save_path = "/net/jabba/home0/mv612594/00_Git/CESI/STIVE-Potion-Seller-Game/Global/user_saves.save"
+var save_path = "./user_saves.save"
 
 
 func _init() -> void:

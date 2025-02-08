@@ -5,6 +5,7 @@ signal customer_clicked(index: int)
 @onready var name_label: Label = %NameLabel
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var order_label: Label = %OrderLabel
+@onready var color_rect: ColorRect = %ColorRect
 
 
 func set_customer_view(customer: Customer) -> void:
@@ -22,4 +23,5 @@ func _on_gui_input(event: InputEvent) -> void:
 			or event.button_index == MOUSE_BUTTON_RIGHT) \
 			and event.is_pressed():
 				order_label.visible = true
+				color_rect.visible = true
 				customer_clicked.emit(get_index())

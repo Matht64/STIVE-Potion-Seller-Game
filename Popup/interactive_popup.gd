@@ -6,7 +6,7 @@ extends Control
 @onready var v_box_container: VBoxContainer = %VBoxContainer
 
 
-func set_interractive_popup(title : String) -> void:
+func set_interactive_popup(title : String) -> void:
 	popup_label.text = title
 	panel_container.show()
 

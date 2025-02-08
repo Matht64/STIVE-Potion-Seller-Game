@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckfmytxlgd2jn"]
+[gd_scene load_steps=14 format=3 uid="uid://ckfmytxlgd2jn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_35lys"]
+[ext_resource type="Texture2D" uid="uid://6e38i7t7l0ub" path="res://Images/store_backgound.jpg" id="2_1cvj6"]
 [ext_resource type="PackedScene" uid="uid://djn3x2ttwlq7e" path="res://Supplier/stock_view.tscn" id="2_o0q2y"]
 [ext_resource type="PackedScene" uid="uid://lx866nl7wyh8" path="res://Customer/customer_manager_view.tscn" id="2_qh8p1"]
 [ext_resource type="Script" path="res://Inventory/inventory_manager_view.gd" id="3_lao7d"]
@@ -9,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://vrjnaxlb2c6e" path="res://Inventory/slot_view.tscn" id="5_81qsx"]
 [ext_resource type="PackedScene" uid="uid://dupwpw8kfufbg" path="res://Popup/info_popup.tscn" id="7_hpbp8"]
 [ext_resource type="PackedScene" uid="uid://cbs0e8pgixrmb" path="res://Bonus/bonus_manager_view.tscn" id="8_oq38p"]
-[ext_resource type="PackedScene" uid="uid://dy2iqulqcbvck" path="res://Popup/interractive_popup.tscn" id="9_885r4"]
+[ext_resource type="PackedScene" uid="uid://dy2iqulqcbvck" path="res://Popup/interactive_popup.tscn" id="9_885r4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhcyp"]
 atlas = ExtResource("4_nclon")
@@ -45,9 +46,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="Panel" parent="UI/ScreenHbox/LeftScreen/LeftVBoxContainer"]
+[node name="BG" type="TextureRect" parent="UI/ScreenHbox/LeftScreen/LeftVBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+texture = ExtResource("2_1cvj6")
+expand_mode = 5
 
 [node name="CustomerInterface" parent="UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG" instance=ExtResource("2_qh8p1")]
 layout_mode = 1
@@ -57,26 +60,32 @@ unique_name_in_owner = true
 visible = false
 z_index = 5
 layout_mode = 1
-offset_left = 482.0
-offset_top = 230.0
-offset_right = 811.0
-offset_bottom = 543.0
+offset_left = 512.0
+offset_top = 241.0
+offset_right = 841.0
+offset_bottom = 554.0
 
 [node name="CheckInventorySell" type="Button" parent="UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG"]
 unique_name_in_owner = true
 visible = false
 z_index = 5
 layout_mode = 0
-offset_left = 734.0
-offset_top = 190.0
-offset_right = 805.0
-offset_bottom = 230.0
+offset_left = 761.0
+offset_top = 199.0
+offset_right = 832.0
+offset_bottom = 239.0
 text = "Sell"
 icon = SubResource("AtlasTexture_fhcyp")
 
-[node name="Counter" type="Panel" parent="UI/ScreenHbox/LeftScreen/LeftVBoxContainer"]
-custom_minimum_size = Vector2(0, 250)
-layout_mode = 2
+[node name="ColorRect" type="ColorRect" parent="UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG/CheckInventorySell"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.180392, 0.180392, 0.180392, 1)
 
 [node name="StockView" parent="UI/ScreenHbox/LeftScreen" instance=ExtResource("2_o0q2y")]
 visible = false
@@ -182,7 +191,7 @@ grow_vertical = 1
 unique_name_in_owner = true
 z_index = 110
 
-[node name="InterractivePopup" parent="UI" instance=ExtResource("9_885r4")]
+[node name="InteractivePopup" parent="UI" instance=ExtResource("9_885r4")]
 unique_name_in_owner = true
 visible = false
 top_level = true
