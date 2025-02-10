@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="Supplier" load_steps=5 format=3 uid="uid://o7byo4od6xi2"]
+[gd_resource type="Resource" script_class="Supplier" load_steps=7 format=3 uid="uid://o7byo4od6xi2"]
 
 [ext_resource type="Resource" uid="uid://48eoweciodyd" path="res://Global/Resources/Potions/blue_potion.tres" id="1_u4xb7"]
+[ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Images/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="1_uk7ju"]
 [ext_resource type="Script" path="res://Supplier/offer.gd" id="2_iwbmb"]
 [ext_resource type="Script" path="res://Supplier/supplier.gd" id="3_sg7y1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iokfd"]
+atlas = ExtResource("1_uk7ju")
+region = Rect2(224, 512, 32, 32)
 
 [sub_resource type="Resource" id="Resource_ynja6"]
 script = ExtResource("2_iwbmb")
@@ -14,5 +19,6 @@ potion = ExtResource("1_u4xb7")
 script = ExtResource("3_sg7y1")
 id = 0
 name = "Jean-Benoit"
+image = SubResource("AtlasTexture_iokfd")
 unlock_price = 0
 offer = SubResource("Resource_ynja6")

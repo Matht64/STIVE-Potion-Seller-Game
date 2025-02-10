@@ -96,8 +96,7 @@ func new_game_save(new_save_name: String) -> bool:
 				}
 			],
 			"suppliers": [
-				0,
-				1
+				0
 			],
 			"bonuses": [
 				0

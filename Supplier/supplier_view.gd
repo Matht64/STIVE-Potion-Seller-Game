@@ -13,8 +13,8 @@ func set_supplier_view(supplier: Supplier) -> void:
 	var potion = supplier.offer.potion
 	supplier_image.texture = supplier.image
 	potion_image.texture = potion.image
-	supplier_info.text = ("\n\n%s" % supplier.name)
-	potion_info.text = ("\n\n%s" % potion.name)
+	supplier_info.text = ("%s" % supplier.name)
+	potion_info.text = ("%s" % potion.name)
 	if not supplier in S.seller.suppliers:
 		panel.modulate = Color(1,1,1,0.5)
 

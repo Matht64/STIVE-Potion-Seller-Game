@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="Supplier" load_steps=5 format=3 uid="uid://bn8ha2we6xfwg"]
+[gd_resource type="Resource" script_class="Supplier" load_steps=7 format=3 uid="uid://bn8ha2we6xfwg"]
 
+[ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Images/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="1_6fk48"]
 [ext_resource type="Resource" uid="uid://c788iwls7alq4" path="res://Global/Resources/Potions/red_potion.tres" id="1_fy8se"]
 [ext_resource type="Script" path="res://Supplier/offer.gd" id="2_ajn3n"]
 [ext_resource type="Script" path="res://Supplier/supplier.gd" id="3_7jv4l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg6yh"]
+atlas = ExtResource("1_6fk48")
+region = Rect2(256, 512, 32, 32)
 
 [sub_resource type="Resource" id="Resource_1wlgp"]
 script = ExtResource("2_ajn3n")
@@ -14,5 +19,6 @@ potion = ExtResource("1_fy8se")
 script = ExtResource("3_7jv4l")
 id = 1
 name = "Jean-Baptiste"
+image = SubResource("AtlasTexture_bg6yh")
 unlock_price = 50
 offer = SubResource("Resource_1wlgp")
