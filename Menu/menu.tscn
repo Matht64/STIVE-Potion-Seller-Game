@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://co7n85vfs7w5g"]
+[gd_scene load_steps=5 format=3 uid="uid://co7n85vfs7w5g"]
 
 [ext_resource type="Script" path="res://Menu/menu.gd" id="1_5w748"]
 [ext_resource type="Texture2D" uid="uid://j26b23xeqs41" path="res://Images/Various NPCs Banner 2.png" id="2_3di86"]
 [ext_resource type="PackedScene" uid="uid://dy2iqulqcbvck" path="res://Popup/interactive_popup.tscn" id="3_hcd8g"]
+[ext_resource type="PackedScene" uid="uid://ys2g6ag6tauy" path="res://Animations/MuteButton/mute_button.tscn" id="4_ojalg"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -77,6 +78,18 @@ unique_name_in_owner = true
 visible = false
 top_level = true
 layout_mode = 1
+
+[node name="MuteButton" parent="." instance=ExtResource("4_ojalg")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -47.0
+offset_right = -24.0
+offset_bottom = -20.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="PanelContainer/BG/MarginContainer/ScrollContainer/VerticalSaveMenu/NewGameButton" to="." method="_on_new_game_button_pressed"]

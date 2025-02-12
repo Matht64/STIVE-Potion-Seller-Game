@@ -22,6 +22,7 @@ Api="*res://Global/api.gd"
 Resources="*res://Global/Resources/resources.gd"
 S="*res://Global/seller_data.gd"
 game_data="*res://Global/game_data.gd"
+bg_music="*res://Global/bg_music.tscn"
 
 [dotnet]
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://17cbf7fgxgwt"]
+
+[ext_resource type="AudioStream" uid="uid://ehytd7m43t7k" path="res://Animations/medieval-background-196571.mp3" id="1_6yxhj"]
+
+[node name="BgMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_6yxhj")
+volume_db = -25.0
+autoplay = true

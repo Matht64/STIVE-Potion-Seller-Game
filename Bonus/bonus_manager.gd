@@ -41,13 +41,13 @@ func apply_bonuses(transaction : int) -> void:
 
 func apply_bonus_type_1(transaction : int) -> void:
 	# ex : Golds * 2
-	S.seller.golds += transaction * 2
+	S.update_seller_golds(transaction * 2)
 	
 
 
 func apply_bonus_type_2(transaction : int) -> void:
 	# ex : Debuff / 2
-	S.seller.golds += transaction / 2
+	S.update_seller_golds(transaction / 2)
 	
 
 

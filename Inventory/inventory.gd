@@ -92,7 +92,7 @@ func buy_from_supplier(quantity : int, offer : Offer) -> void:
 			if slot: 
 				if slot.potion.id == offer.potion.id:
 					slot.increment_potion(offer.quantity * quantity)
-					S.seller.golds -= offer.price * quantity
+					S.update_seller_golds(-(offer.price * quantity))
 					inventory_updated.emit(self)
 					return
 		print("no item corresponding")

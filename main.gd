@@ -12,6 +12,8 @@ extends Node
 @onready var info_popup: Control = %InfoPopup
 @onready var interactive_popup: Control = %InteractivePopup
 @onready var save_menu_button: Button = %"Save&Menu"
+@onready var coin_animation: Node2D = %CoinAnimation
+@onready var audio_lose: AudioStreamPlayer = $AudioLose
 
 #endregion
 
@@ -35,7 +37,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	golds_label.text ="%s" % S.seller.golds
+	golds_label.text = "%s" % S.seller.golds
 
 
 func check_game_state() -> void :
@@ -47,6 +49,7 @@ func check_game_state() -> void :
 		var exit_game_button = Button.new()
 		exit_game_button.text = "Exit the Game"
 		exit_game_button.connect("pressed", _on_exit_game_button_pressed)
+		audio_lose.play()
 		interactive_popup.v_box_container.add_child(to_title_button)
 		interactive_popup.v_box_container.add_child(exit_game_button)
 		game_data.delete_game_save(game_data.save_name)
@@ -55,13 +58,16 @@ func check_game_state() -> void :
 func apply_sale_result(order_to_check: Order) -> void:
 	# check if the sale match the customer.order
 	var correct_order = customer_manager.customers[0].compare_order(order_to_check)
+	var operation = 0
 	if correct_order:
 		# if yes then seller get paid with potion price
 		for order_line in order_to_check.order_lines:
-			S.seller.golds += order_line.potion.price * order_line.quantity
+			operation += order_line.potion.price * order_line.quantity
+		S.update_seller_golds(operation)
 	else:
 		# if not seller get debuff and  reffill with the potions he spend
-		S.seller.golds -= 10
+		operation = -10
+		S.update_seller_golds(operation)
 		check_game_state()
 		inventory_manager.seller_inventory.refill_inventory_with(order_to_check)
 	clear_customer()
@@ -76,6 +82,7 @@ func set_seller() -> void:
 	S.seller.suppliers = supplier_manager.get_suppliers_by_id(save.suppliers)
 	S.seller.bonuses = bonus_manager.get_bonuses_by_id(save.bonuses)
 	S.seller.inventory = inv
+	S.gold_change.connect(_on_gold_change)
 
 
 func set_customer() -> void :
@@ -206,7 +213,7 @@ func _on_exit_game_button_pressed() -> void:
 func _on_unlock_supplier_button_pressed(supplier: Supplier) -> void:
 	if S.seller.golds >= supplier.unlock_price:
 		supplier_manager.unlock_supplier(supplier)
-		S.seller.golds -= supplier.unlock_price
+		S.update_seller_golds(-supplier.unlock_price)
 		stock_view.set_stock_view(supplier_manager)
 		interactive_popup.clear_popup()
 	else:
@@ -217,8 +224,12 @@ func _on_cancel_button_pressed() -> void:
 	interactive_popup.clear_popup()
 
 
+func _on_gold_change(operation: int) -> void:
+	coin_animation.set_animation(operation)
+
+
 func _on_addgold_pressed() -> void:
-	S.seller.golds += 100
+	S.update_seller_golds(100)
 
 
 func _on_lose_pressed() -> void:

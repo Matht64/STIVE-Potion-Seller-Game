@@ -1,21 +1,33 @@
 extends Node2D
 
-@onready var button: Button = $Button
+@onready var button: Button = %Button
 @onready var tween: Tween
+@onready var initial_position
+@onready var positive_audio: AudioStreamPlayer = $Button/PositiveAudio
+@onready var negative_audio: AudioStreamPlayer = $Button/NegativeAudio
+
 
 func _ready() -> void:
-	set_animation(-10)
+	initial_position = button.position
+
 
 func set_animation(operation: int) -> void :
+	button.position = initial_position
+	button.visible = true
+	
 	if tween and tween.is_running():
 		tween.kill()
-
 	tween = get_tree().create_tween()
+	
 	if operation > 0:
 		button.text = "+%s" % operation
-		button.font_color = Color("#517a00")
+		button.add_theme_color_override("font_color", Color.GREEN)
+		positive_audio.play()
 	else:
 		button.text = "%s" % operation
-		button.font_color = Color("#c50000")
-	tween.tween_property(button, "global_position", Vector2(), 1)
+		button.add_theme_color_override("font_color", Color.RED)
+		negative_audio.play()
+		
+	tween.tween_property(button, "position", Vector2(), 0.5)
+	tween.tween_callback(button.hide)
 	

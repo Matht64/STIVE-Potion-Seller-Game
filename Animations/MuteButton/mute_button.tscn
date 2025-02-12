@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ys2g6ag6tauy"]
+
+[ext_resource type="Texture2D" uid="uid://cxsxn25f1neiu" path="res://Animations/MuteButton/speaker-filled-audio-tool.png" id="1_xm0dr"]
+[ext_resource type="Script" path="res://Animations/MuteButton/mute_button.gd" id="2_uxhso"]
+
+[node name="MuteButton" type="Button"]
+offset_right = 27.0
+offset_bottom = 27.0
+icon = ExtResource("1_xm0dr")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_uxhso")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
