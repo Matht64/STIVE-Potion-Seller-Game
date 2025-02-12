@@ -111,3 +111,66 @@ func new_game_save(new_save_name: String) -> bool:
 func delete_game_save(to_delete_save_name: String) -> void:
 	saves.erase(to_delete_save_name)
 	set_save_file()
+
+
+var save_api = [
+  {
+	"id": 4,
+	"name" : "blueualblauub",
+	"gold": 957447,
+	"userId": "1f43468c-c467-4cdd-a02d-29bd888e09c8",
+	"userName": "Terry",
+	"gameDataBonuses": [
+	  {
+		"gameDataId": 4,
+		"bonusId": 2,
+		"dateEnd": "2024-12-17T19:36:05.095235",
+		"quantity": 7
+	  }
+	],
+	"gameDataPotions": [
+	  {
+		"gameDataId": 4,
+		"potionId": 2,
+		"quantity": 4
+	  }
+	],
+	"gameDataSuppliers": []
+  },
+  {
+	"id": 8,
+	"gold": 100,
+	"userId": "1f43468c-c467-4cdd-a02d-29bd888e09c8",
+	"userName": "Terry",
+	"gameDataBonuses": [],
+	"gameDataPotions": [],
+	"gameDataSuppliers": []
+  },
+  {
+	"id": 9,
+	"gold": 100,
+	"userId": "1f43468c-c467-4cdd-a02d-29bd888e09c8",
+	"userName": "Terry",
+	"gameDataBonuses": [],
+	"gameDataPotions": [],
+	"gameDataSuppliers": []
+  },
+  {
+	"id": 11,
+	"gold": 100,
+	"userId": "1f43468c-c467-4cdd-a02d-29bd888e09c8",
+	"userName": "Terry",
+	"gameDataBonuses": [],
+	"gameDataPotions": [],
+	"gameDataSuppliers": []
+  },
+  {
+	"id": 14,
+	"gold": 100,
+	"userId": "1f43468c-c467-4cdd-a02d-29bd888e09c8",
+	"userName": "Terry",
+	"gameDataBonuses": [],
+	"gameDataPotions": [],
+	"gameDataSuppliers": []
+  }
+]

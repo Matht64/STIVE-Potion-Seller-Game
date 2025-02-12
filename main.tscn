@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckfmytxlgd2jn"]
+[gd_scene load_steps=15 format=3 uid="uid://ckfmytxlgd2jn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_35lys"]
 [ext_resource type="Texture2D" uid="uid://6e38i7t7l0ub" path="res://Images/store_backgound.jpg" id="2_1cvj6"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://dupwpw8kfufbg" path="res://Popup/info_popup.tscn" id="7_hpbp8"]
 [ext_resource type="PackedScene" uid="uid://cbs0e8pgixrmb" path="res://Bonus/bonus_manager_view.tscn" id="8_oq38p"]
 [ext_resource type="PackedScene" uid="uid://dy2iqulqcbvck" path="res://Popup/interactive_popup.tscn" id="9_885r4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nh52"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhcyp"]
 atlas = ExtResource("4_nclon")
@@ -74,18 +77,9 @@ offset_left = 761.0
 offset_top = 199.0
 offset_right = 832.0
 offset_bottom = 239.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_4nh52")
 text = "Sell"
 icon = SubResource("AtlasTexture_fhcyp")
-
-[node name="ColorRect" type="ColorRect" parent="UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG/CheckInventorySell"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.180392, 0.180392, 0.180392, 1)
 
 [node name="StockView" parent="UI/ScreenHbox/LeftScreen" instance=ExtResource("2_o0q2y")]
 visible = false
