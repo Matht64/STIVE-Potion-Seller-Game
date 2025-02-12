@@ -4,7 +4,6 @@ extends Node2D
 @onready var tween: Tween
 @onready var initial_position
 @onready var positive_audio: AudioStreamPlayer = $Button/PositiveAudio
-@onready var negative_audio: AudioStreamPlayer = $Button/NegativeAudio
 
 
 func _ready() -> void:
@@ -26,8 +25,7 @@ func set_animation(operation: int) -> void :
 	else:
 		button.text = "%s" % operation
 		button.add_theme_color_override("font_color", Color.RED)
-		negative_audio.play()
-		
+
 	tween.tween_property(button, "position", Vector2(), 0.5)
 	tween.tween_callback(button.hide)
 	

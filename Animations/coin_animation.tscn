@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://8vhegu2k13p0"]
+[gd_scene load_steps=5 format=3 uid="uid://8vhegu2k13p0"]
 
 [ext_resource type="Script" path="res://Animations/coin_animation.gd" id="1_6fmha"]
 [ext_resource type="Texture2D" uid="uid://bftiaddeppt5l" path="res://Images/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="2_n434w"]
 [ext_resource type="AudioStream" uid="uid://bxd7rsmucwucg" path="res://Animations/cash-register-kaching-sound-effect-125042 (mp3cut.net).mp3" id="3_0ppry"]
-[ext_resource type="AudioStream" uid="uid://b8oaxnv67cf0g" path="res://Animations/wrong-buzzer-6268 (mp3cut.net).mp3" id="4_06jyt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4haeu"]
 atlas = ExtResource("2_n434w")
@@ -15,20 +14,19 @@ script = ExtResource("1_6fmha")
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
 visible = false
-offset_top = 27.0
-offset_right = 76.0
-offset_bottom = 67.0
+offset_left = 1.0
+offset_top = 36.0
+offset_right = 184.0
+offset_bottom = 76.0
 theme_override_colors/font_color = Color(0.318253, 0.477061, 1.92523e-07, 1)
 button_mask = 0
-text = "+ 10"
+text = "+000000000
+"
 icon = SubResource("AtlasTexture_4haeu")
 flat = true
+alignment = 2
 icon_alignment = 2
 
 [node name="PositiveAudio" type="AudioStreamPlayer" parent="Button"]
 stream = ExtResource("3_0ppry")
 volume_db = -15.0
-
-[node name="NegativeAudio" type="AudioStreamPlayer" parent="Button"]
-stream = ExtResource("4_06jyt")
-volume_db = -25.0

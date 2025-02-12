@@ -14,6 +14,7 @@ extends Node
 @onready var save_menu_button: Button = %"Save&Menu"
 @onready var coin_animation: Node2D = %CoinAnimation
 @onready var audio_lose: AudioStreamPlayer = $AudioLose
+@onready var audio_negative_transaction: AudioStreamPlayer = $AudioNegativeTransaction
 
 #endregion
 
@@ -67,6 +68,7 @@ func apply_sale_result(order_to_check: Order) -> void:
 	else:
 		# if not seller get debuff and  reffill with the potions he spend
 		operation = -10
+		audio_negative_transaction.play()
 		S.update_seller_golds(operation)
 		check_game_state()
 		inventory_manager.seller_inventory.refill_inventory_with(order_to_check)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ckfmytxlgd2jn"]
+[gd_scene load_steps=19 format=3 uid="uid://ckfmytxlgd2jn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_35lys"]
 [ext_resource type="Texture2D" uid="uid://6e38i7t7l0ub" path="res://Images/store_backgound.jpg" id="2_1cvj6"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ys2g6ag6tauy" path="res://Animations/MuteButton/mute_button.tscn" id="10_385n0"]
 [ext_resource type="PackedScene" uid="uid://8vhegu2k13p0" path="res://Animations/coin_animation.tscn" id="12_rnc16"]
 [ext_resource type="AudioStream" uid="uid://8o0wu2xtug24" path="res://Animations/The Price is Right Losing Horn - Sound Effect (HD).mp3" id="13_4hms5"]
+[ext_resource type="AudioStream" uid="uid://b8oaxnv67cf0g" path="res://Animations/wrong-buzzer-6268 (mp3cut.net).mp3" id="15_a4mth"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nh52"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 1)
@@ -198,6 +199,10 @@ offset_bottom = -22.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="CoinAnimation" parent="UI/ScreenHbox/RightScreen" instance=ExtResource("12_rnc16")]
+unique_name_in_owner = true
+position = Vector2(114, 269)
+
 [node name="InfoPopup" parent="UI" instance=ExtResource("7_hpbp8")]
 unique_name_in_owner = true
 z_index = 110
@@ -207,13 +212,13 @@ unique_name_in_owner = true
 visible = false
 top_level = true
 
-[node name="CoinAnimation" parent="UI" instance=ExtResource("12_rnc16")]
-unique_name_in_owner = true
-position = Vector2(1073, 275)
-
 [node name="AudioLose" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_4hms5")
 volume_db = -15.864
+
+[node name="AudioNegativeTransaction" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_a4mth")
+volume_db = -25.0
 
 [connection signal="visibility_changed" from="UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG/ExternalInventory" to="." method="_on_external_inventory_visibility_changed"]
 [connection signal="pressed" from="UI/ScreenHbox/LeftScreen/LeftVBoxContainer/BG/CheckInventorySell" to="." method="_on_check_inventory_sell_button_pressed"]
