@@ -155,6 +155,7 @@ text = "Exit to menu"
 
 [node name="Addgold" type="Button" parent="UI/ScreenHbox/RightScreen"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 185.0
 offset_top = 348.0
@@ -164,6 +165,7 @@ text = "Add Gold"
 
 [node name="Lose" type="Button" parent="UI/ScreenHbox/RightScreen"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 185.0
 offset_top = 379.0

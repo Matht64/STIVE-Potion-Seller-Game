@@ -135,7 +135,7 @@ func clear_customer() -> void:
 
 
 func handle_supplier_unlocking_popup(supplier: Supplier) -> void :
-	interactive_popup.set_interactive_popup("You must buy it first :")
+	interactive_popup.set_interactive_popup("Do you want to sign a contract with %s ?" % supplier.name)
 	var price = Label.new()
 	price.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	price.text = "%s golds" % supplier.unlock_price

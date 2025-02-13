@@ -5,6 +5,12 @@ extends Button
 
 @onready var mute_button: Button = $"."
 
+func _ready() -> void:
+	if bg_music.volume_db == -25 :
+		mute_button.icon = sound_png
+	else:
+		mute_button.icon = mute_png
+
 func _on_pressed() -> void:
 	if bg_music.volume_db == -25 :
 		mute_button.icon = mute_png
